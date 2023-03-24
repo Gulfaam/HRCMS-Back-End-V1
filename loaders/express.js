@@ -17,4 +17,5 @@ export default async function expressLoader({ app }) {
 
   app.use("/api", protectedRouter)
   app.use("/", unProtectedRouter)
+  app.use("/public", express.static("public"));
 }

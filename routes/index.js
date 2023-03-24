@@ -2,6 +2,8 @@ import express from "express";
 
 // routes
 import userRoute from "./user/index.js";
+import attendenceRoute from "./attendence/index.js";
+
 
 import employeeRoute from "./employee/index.js"
 
@@ -12,6 +14,8 @@ const unProtectedRouter = express.Router();
 
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
+
 unProtectedRouter.use("/employee", employeeRoute);
+unProtectedRouter.use("/attendence", attendenceRoute);
 
 export { protectedRouter, unProtectedRouter };

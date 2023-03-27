@@ -13,7 +13,7 @@ const schema = {
         status: Joi.string().valid('present', 'absent', 'leave', 'late').required(),
         date: Joi.date().iso().required(),
         updated_date: Joi.date().iso().required(),
-        remarks: Joi.string(),
+        remarks: Joi.string().max(250),
         monthly_hours: Joi.number().required(),
     }),
   },

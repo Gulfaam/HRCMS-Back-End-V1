@@ -5,8 +5,8 @@ import controllers from "./controllers.js";
 import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
-router.get("/", authenticate, controllers.getAll);
-router.post("/", authenticate, validate(attendenceValidation.add), controllers.add);
+router.get("/",  controllers.getAll);
+router.post("/",  validate(attendenceValidation.add), controllers.add);
 router.patch('/:id', authenticate,  validate(attendenceValidation.update), controllers.update);
 router.delete('/:id', authenticate, validate(attendenceValidation.id),  controllers.delete);
 

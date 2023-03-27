@@ -14,7 +14,7 @@ const schema = Schema(
       maxlength: 100,
     },
     cost: {
-      type: Double,
+      type: Number,
       required: true,
     },
     quantity: {
@@ -22,7 +22,7 @@ const schema = Schema(
       required: true,
     },
     total_cost: {
-      type: Double,
+      type: Number,
       required: true,
     },
     description: {
@@ -38,7 +38,8 @@ const schema = Schema(
       required: true,
     },
     employee_id: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Employee",
       required: true,
       maxlength: 50,
     },

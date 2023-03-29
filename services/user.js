@@ -12,7 +12,7 @@ const UserService = {
       const token = jwt.sign({ id: data._id }, "my_temporary_secret", {
       expiresIn: "1h",
     });
-    //*sending the otp also there along side jwt token
+    //*sending the otp also there along side jwt toke
     let otp=otpgenretor();
       return { message: "success", token,otp };
     } catch (error) {

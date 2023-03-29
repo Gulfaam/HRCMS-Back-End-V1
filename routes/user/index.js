@@ -6,6 +6,9 @@ import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
 router.get("/", authenticate, controllers.getAll);
-router.post("/", validate(authValidation.add), controllers.add);
+router.post("/register", validate(authValidation.register), controllers.register);
+router.post("/login", validate(authValidation.login), controllers.login);
+router.patch('/:id', authenticate,  validate(authValidation.update), controllers.update);
+router.delete('/:id', authenticate, validate(authValidation.id),  controllers.delete);
 
 export default router;

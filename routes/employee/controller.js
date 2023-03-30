@@ -18,7 +18,6 @@ const controller = {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
-
     add: async (req, res) => {
 
         const addResponse = await EmployeeServices.add(req.body, req.file.path);

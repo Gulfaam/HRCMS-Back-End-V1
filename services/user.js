@@ -1,6 +1,5 @@
 import UserModel from "../models/user.js";
 import jwt  from "jsonwebtoken";
-import otpgenretor from "../middlewares/optgeneretor.js"
 
 const UserService = {
   login: async (body) => {
@@ -12,9 +11,7 @@ const UserService = {
       const token = jwt.sign({ id: data._id }, "my_temporary_secret", {
       expiresIn: "1h",
     });
-    //*sending the otp also there along side jwt toke
-    let otp=otpgenretor();
-      return { message: "success", token,otp };
+      return { message: "success", token};
     } catch (error) {
       return { message: "error", data: "Invalid Email and Password!" };
     }
@@ -22,9 +19,8 @@ const UserService = {
   register: async (body) => {
     try {
       const user = await UserModel.create(body);
-      let otp=otpgenretor();
       if (user) {
-        return { message: "success", data: user , otp:otp};
+        return { message: "success", data: user};
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -43,10 +39,7 @@ const UserService = {
 
   forgot: async (body) => {
     try {
-      console.log(body);
       const user = await UserModel.findOne(body);
-      //*generating the otp right now we aren't updating just finding that account and generating otp
-      let otp=otpgenretor();
       if (user) {
         return { message: "success", data: user,otp};
       }

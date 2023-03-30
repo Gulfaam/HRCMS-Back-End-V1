@@ -1,8 +1,8 @@
+
 import UserService from "../../services/user.js";
 import httpResponse from "../../utils/httpResponse.js";
 
 const controller = {
-
   register: async (req, res) => {
     const addResponse = await UserService.register(req.body);
     if (addResponse.message === "success") {
@@ -28,7 +28,6 @@ const controller = {
       }
   },
   forgot: async (req, res) => {
-    console.log('hello in the forgot')
     try{
       const addResponse = await UserService.forgot(req.body);
       if (addResponse.message === "success") {

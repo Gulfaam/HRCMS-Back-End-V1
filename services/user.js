@@ -41,7 +41,7 @@ const UserService = {
     try {
       const user = await UserModel.findOne(body);
       if (user) {
-        return { message: "success", data: user,otp};
+        return { message: "success", data: user};
       }
     } catch (error) {
       return { message: "error", data: error.message };

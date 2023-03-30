@@ -3,6 +3,7 @@ import express from "express";
 // routes
 import userRoute from "./user/index.js";
 import attendenceRoute from "./attendence/index.js";
+import miscRoute from "./misc/index.js";
 import eventRoute from "./event/index.js"
 
 
@@ -17,6 +18,7 @@ const unProtectedRouter = express.Router();
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
 unProtectedRouter.use("/attendence", attendenceRoute);
+unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 
 export { protectedRouter, unProtectedRouter };

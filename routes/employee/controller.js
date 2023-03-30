@@ -10,6 +10,14 @@ const controller = {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
+    getOne: async (req, res) => {
+        try {
+            const data = await EmployeeServices.getOne(req.params.id);
+            return httpResponse.SUCCESS(res, data.data);
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
 
     add: async (req, res) => {
 
@@ -30,26 +38,21 @@ const controller = {
         } catch (error) {
             return httpResponse.NOT_FOUND(res, error);
         }
-        // if (addResponse.message === "success") {
-        //     return httpResponse.CREATED(res, addResponse.data);
-        // } else if (addResponse.message === "failed") {
-        //     return httpResponse.CONFLICT(res, addResponse.data);
-        // } else {
-        //     return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
-        // }
     },
 
     update: async (req, res) => {
-        const addResponse = await EmployeeServices.update(req.params.id, req.body);
-        if (addResponse.message === "success") {
-            return httpResponse.CREATED(res, addResponse.data);
-        } else if (addResponse.message === "failed") {
-            return httpResponse.CONFLICT(res, addResponse.data);
+        let addResponse;
+        if (req.file) {
+            addResponse = await EmployeeServices.update(req.params.id, req.body, req.file.path);
         } else {
-            return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+            addResponse = await EmployeeServices.update(req.params.id, req.body);
+        }
+        if (addResponse.message === "success") {
+            return httpResponse.SUCCESS(res, addResponse.data);
+        } else {
+            return httpResponse.NOT_FOUND(res, addResponse.data);
         }
     },
-
 }
 
 export default controller;

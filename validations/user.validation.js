@@ -1,11 +1,33 @@
-import Joi from "joi";
+import joi from 'joi'
 
-const schema = {
-  add: {
-    body: Joi.object().keys({
-      title: Joi.string().required(),
-    }),
-  },
-};
 
-export default schema;
+export default {
+    id:{
+        params: joi.object().keys({
+            id: joi.string().required(),
+        }),
+    },
+
+    register: {
+        body: joi.object().keys({
+            email: joi.string().required().email(),
+            password: joi.string().required(),
+        }),
+    },
+    login:{
+        body: joi.object().keys({
+            email: joi.string().required().email(),
+            password: joi.string().required(),
+        }),
+    },
+
+    update:{
+        params: joi.object().keys({
+            id: joi.string().required(),
+        }),
+        body: joi.object().keys({
+            email: joi.string().email(),
+            password: joi.string(),
+        }),
+    },
+}

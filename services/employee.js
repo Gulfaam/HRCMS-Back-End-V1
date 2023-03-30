@@ -11,9 +11,18 @@ const EmployeeServices = {
         }
     },
 
+    getOne: async (id) => {
+        try {
+            const data = await EmployeeModel.findById(id);
+
+            return { message: "success", data };
+        } catch (error) {
+            return { message: "error", data: error.message };
+        }
+    },
+
     add: async (body, path) => {
         try {
-            console.log("sssssssss")
             console.log(path)
             path = path.replace(`\\`, `/`);
             const file = {
@@ -41,9 +50,33 @@ const EmployeeServices = {
             return { message: "error", data: error.message };
         }
     },
-    update: async (id, body) => {
+    update: async (id, body, path) => {
         try {
-            const savedData = await EmployeeModel.findByIdAndUpdate(id, body, { new: true });
+            const existingEmployee = await EmployeeModel.findById(id);
+
+            if (!existingEmployee) {
+                return { message: "error", existingEmployee };
+            }
+            if (path) {
+                path = path.replace(`\\`, `/`);
+            }
+            const file = {
+                name: body.name || existingEmployee.name,
+                role: body.role || existingEmployee.role,
+                contact: body.contact || existingEmployee.contact,
+                email: body.email || existingEmployee.email,
+                address: body.address || existingEmployee.address,
+                status: body.status || existingEmployee.status,
+                cnic: body.cnic || existingEmployee.cnic,
+                joining_date: body.joining_date || existingEmployee.joining_date,
+                ending_date: body.ending_date || existingEmployee.ending_date,
+                created_date: body.created_date || existingEmployee.created_date,
+                updated_date: body.updated_date || existingEmployee.updated_date,
+                image: path || existingEmployee.image,
+                date_of_birth: body.date_of_birth || existingEmployee.date_of_birth,
+                blood_group: body.blood_group || existingEmployee.blood_group,
+            };
+            const savedData = await EmployeeModel.findByIdAndUpdate(id, file, { new: true });
             if (savedData) {
                 return { message: "success", data: savedData };
             }

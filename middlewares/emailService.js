@@ -2,12 +2,13 @@ import nodemailer from 'nodemailer';
 import otpGenerator from 'otp-generator';
 
 const transporterFun = (email) => {
+
     const transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'estrella.becker48@ethereal.email',
-            pass: 'v9dnuD5DPQzmw8Zga2'
+            user: 'garett.mccullough63@ethereal.email',
+            pass: 'a4N2gM78EmtAEB39T1'
         }
     });
 
@@ -19,13 +20,7 @@ const transporterFun = (email) => {
         subject: 'OTP Verification',
         text: `Your OTP code is ${OTP}`
     };
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error(error);
-        } else {
-            console.log(`Email sent: ${info.response}`);
-        }
-    });
+    transporter.sendMail(mailOptions)
 }
 
 export default transporterFun

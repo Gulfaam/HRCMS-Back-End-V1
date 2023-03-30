@@ -45,6 +45,10 @@ const UserService = {
       if (savedData) {
         return { message: "success", data: "Otp has been send " };
       }
+      else {
+        return { message: "error", data: "Email is not valid" };
+
+      }
     } catch (error) {
       return { message: "error", data: error.message };
     }

@@ -1,12 +1,11 @@
-import express from "express"
-import nodemailer from "nodemailer"
 
+import nodemailer from "nodemailer"
 
 
 //*using simple functions
 function generator() {
     const randomNumber = Math.floor(Math.random() * 1000000);
-    //by using the padStart we'rea making sure that it'll have the 6 digits code
+    //*by using the padStart we'rea making sure that it'll have the 6 digits code
     const otp = randomNumber.toString().padStart(6, '0');
     const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
@@ -34,6 +33,6 @@ function generator() {
     }
   });
   console.log(otp);
-return otp;
+ return otp;
 }
 export default generator;

@@ -28,6 +28,7 @@ const controller = {
       }
   },
   forgot: async (req, res) => {
+    console.log('hello in the forgot')
     try{
       const addResponse = await UserService.forgot(req.body);
       if (addResponse.message === "success") {

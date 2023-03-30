@@ -43,7 +43,7 @@ const schema = Schema(
       required: true,
       maxlength: 50,
     },
-  }
-  // { timestamps: true },
+  },
+  { timestamps: true },
 );
 export default mongoose.model("Misc", schema);

@@ -17,7 +17,6 @@ const employeeSchema = mongoose.Schema({
         maxlength: 50,
     },
     email: {
-
         type: String,
         required: true,
         maxlength: 50,
@@ -54,7 +53,7 @@ const employeeSchema = mongoose.Schema({
         required: true
     },
     image: {
-        type: String,
+        type:Buffer,
         required: true,
     },
 
@@ -66,9 +65,7 @@ const employeeSchema = mongoose.Schema({
         type: String,
         enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
         required: true,
-    }
-
-
+    },
 })
 
 export default mongoose.model('Employee', employeeSchema)

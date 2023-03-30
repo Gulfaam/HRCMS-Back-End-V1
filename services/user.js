@@ -19,25 +19,12 @@ const UserService = {
       return { message: "error", data: "Invalid Email and Password!" };
     }
   },
-  forgot: async (body) => {
-    try {
-      const data = await UserModel.findOne({
-         
-      });
-    //*sending the otp also there along side jwt token
-    let otp=otpgenretor();
-      return { message: "success", token,otp };
-    } catch (error) {
-      return { message: "error", data: "Invalid Email and Password!" };
-    }
-  },
-
   register: async (body) => {
     try {
-      const savedData = await UserModel.create(body);
+      const user = await UserModel.create(body);
       let otp=otpgenretor();
-      if (savedData) {
-        return { message: "success", data: savedData , otp:otp};
+      if (user) {
+        return { message: "success", data: user , otp:otp};
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -57,11 +44,11 @@ const UserService = {
   forgot: async (body) => {
     try {
       console.log(body);
-      const savedData = await UserModel.findOne(body);
+      const user = await UserModel.findOne(body);
       //*generating the otp right now we aren't updating just finding that account and generating otp
       let otp=otpgenretor();
-      if (savedData) {
-        return { message: "success", data: savedData,otp};
+      if (user) {
+        return { message: "success", data: user,otp};
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -69,9 +56,9 @@ const UserService = {
   },
   update: async (id,body) => {
     try {
-      const savedData = await UserModel.findByIdAndUpdate(id, body);
-      if (savedData) {
-        return { message: "success", data: savedData };
+      const user = await UserModel.findByIdAndUpdate(id, body);
+      if (user) {
+        return { message: "success", data: user };
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -79,9 +66,9 @@ const UserService = {
   },
   delete: async (id) => {
     try {
-      const savedData = await UserModel.findByIdAndDelete(id);
-      if (savedData) {
-        return { message: "success", data: savedData };
+      const user = await UserModel.findByIdAndDelete(id);
+      if (user) {
+        return { message: "success", data: user };
       }
     } catch (error) {
       return { message: "error", data: error.message };

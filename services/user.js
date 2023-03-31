@@ -1,17 +1,22 @@
 import UserModel from "../models/user.js";
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import optgeneretor from "../middlewares/optgeneretor.js";
 
 const UserService = {
-  login: async (body) => {
+  login: async (req) => {
     try {
       const data = await UserModel.findOne({
-        email: body.email,
-        password: body.password,
+        email: req.body.email,
+        password: req.body.password,
       });
-      const token = jwt.sign({ id: data._id }, "my_temporary_secret", {
-      expiresIn: "1h",
-    });
-      return { message: "success", token};
+      //*first checking if user exist then generating otp
+      if (data !== "") {
+        optgeneretor(req);
+        const token = jwt.sign({ id: data._id }, "my_temporary_secret", {
+          expiresIn: "1h",
+        });
+        return { message: "success", token };
+      }
     } catch (error) {
       return { message: "error", data: "Invalid Email and Password!" };
     }
@@ -20,7 +25,7 @@ const UserService = {
     try {
       const user = await UserModel.create(body);
       if (user) {
-        return { message: "success", data: user};
+        return { message: "success", data: user };
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -37,17 +42,20 @@ const UserService = {
     }
   },
 
-  forgot: async (body) => {
+  forgot: async (req) => {
     try {
-      const user = await UserModel.findOne(body);
+      const user = await UserModel.findOne({
+        email: req.body.email,
+      });
       if (user) {
-        return { message: "success", data: user};
+        optgeneretor(req);
+        return { message: "success", data: user };
       }
     } catch (error) {
       return { message: "error", data: error.message };
     }
   },
-  update: async (id,body) => {
+  update: async (id, body) => {
     try {
       const user = await UserModel.findByIdAndUpdate(id, body);
       if (user) {

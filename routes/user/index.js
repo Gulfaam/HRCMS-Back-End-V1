@@ -8,8 +8,8 @@ import optgeneretor from "../../middlewares/optgeneretor.js";
 const router = express.Router();
 router.get("/", authenticate, controllers.getAll);
 router.post("/register", validate(authValidation.register),optgeneretor,controllers.register,);
-router.post("/login", validate(authValidation.login),optgeneretor,controllers.login);
-router.post("/forgot", validate(authValidation.forgot),optgeneretor,controllers.forgot);
+router.post("/login", validate(authValidation.login),controllers.login);
+router.post("/forgot", validate(authValidation.forgot),controllers.forgot);
 router.patch('/:id', authenticate,  validate(authValidation.update), controllers.update);
 router.delete('/:id', authenticate, validate(authValidation.id),  controllers.delete);
 

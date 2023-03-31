@@ -16,7 +16,8 @@ const controller = {
 
   login: async (req, res) => {
     try{
-      const addResponse = await UserService.login(req.body);
+       //*passing the req
+      const addResponse = await UserService.login(req);
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse);
       } else {
@@ -29,7 +30,7 @@ const controller = {
   },
   forgot: async (req, res) => {
     try{
-      const addResponse = await UserService.forgot(req.body);
+      const addResponse = await UserService.forgot(req);
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse);
       } else {

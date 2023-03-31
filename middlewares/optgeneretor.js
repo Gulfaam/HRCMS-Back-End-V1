@@ -1,6 +1,5 @@
-// import {} from "dotenv/config";
+
 import nodemailer from "nodemailer"
-// import config from "/config/index"
 export default (req, res, next) => {
   var { email} = req.body;
     const transporter = nodemailer.createTransport({

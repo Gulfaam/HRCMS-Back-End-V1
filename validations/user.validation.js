@@ -1,7 +1,7 @@
 import joi from 'joi'
 
 export default {
-    id:{
+    id: {
         params: joi.object().keys({
             id: joi.string().required(),
         }),
@@ -13,14 +13,20 @@ export default {
             password: joi.string().required(),
         }),
     },
-    login:{
+
+    forgetPassword: {
+        body: joi.object().keys({
+            email: joi.string().required().email()
+        }),
+    },
+    login: {
         body: joi.object().keys({
             email: joi.string().required().email(),
             password: joi.string().required(),
         }),
     },
 
-    update:{
+    update: {
         params: joi.object().keys({
             id: joi.string().required(),
         }),

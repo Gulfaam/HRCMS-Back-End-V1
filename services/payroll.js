@@ -41,6 +41,20 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
+    update: async (id, body) => {
+        try {
+            const savedData = await Payroll.findByIdAndUpdate(id, body);
+            if (savedData) {
+                return { message: "success", data: savedData };
+            }
+            else {
+                return { message: "Not Found", data: savedData };
+
+            }
+        } catch (error) {
+            return { message: "error", data: error.message };
+        }
+    },
 
 };
 

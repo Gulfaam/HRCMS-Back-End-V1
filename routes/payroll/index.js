@@ -9,5 +9,7 @@ router.post("/", validate(payroolValidation.add), controllers.add);
 router.get("/", controllers.getAll);
 router.get("/:id", controllers.getOne);
 router.delete("/:id", controllers.delete);
+router.patch("/:id", validate(payroolValidation.update), controllers.update);
+
 
 export default router;

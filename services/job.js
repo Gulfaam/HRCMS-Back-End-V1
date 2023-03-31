@@ -8,8 +8,18 @@ const JobService = {
         return { message: "success", data: savedData };
       }
     } catch (error) {
-      throw error;;
+      throw error;
     }
-  },}
+  },
+  getById: async (id) => {
+    try {
+      const data = await JobModel.findById(id);
+      return { message: "success", data };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+}
 
 export default JobService;

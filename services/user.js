@@ -1,5 +1,6 @@
 import UserModel from "../models/user.js";
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import transporterFun from "../middlewares/emailService.js";
 
 const UserService = {
   login: async (body) => {
@@ -8,9 +9,12 @@ const UserService = {
         email: body.email,
         password: body.password,
       });
+      if (data) {
+        transporterFun(body.email)
+      }
       const token = jwt.sign({ id: data._id }, "my_temporary_secret", {
-      expiresIn: "1h",
-    });
+        expiresIn: "1h",
+      });
       return { message: "success", token };
     } catch (error) {
       return { message: "error", data: "Invalid Email and Password!" };
@@ -20,8 +24,30 @@ const UserService = {
   register: async (body) => {
     try {
       const savedData = await UserModel.create(body);
+
+      if (savedData) {
+        transporterFun(body.email)
+      }
       if (savedData) {
         return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+  forgetpassword: async (body) => {
+    try {
+      const savedData = await UserModel.findOne(body);
+
+      if (savedData) {
+        transporterFun(body.email)
+      }
+      if (savedData) {
+        return { message: "success", data: "Otp has been send " };
+      }
+      else {
+        return { message: "error", data: "Email is not valid" };
+
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -38,7 +64,7 @@ const UserService = {
     }
   },
 
-  update: async (id,body) => {
+  update: async (id, body) => {
     try {
       const savedData = await UserModel.findByIdAndUpdate(id, body);
       if (savedData) {

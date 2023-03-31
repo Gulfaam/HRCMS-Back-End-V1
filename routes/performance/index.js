@@ -8,6 +8,6 @@ const router = express.Router();
 router.post("/",  validate(PerformanceValidation.add), controllers.add);
 router.get("/",  controllers.getAll);
 router.get("/:id",  validate(PerformanceValidation.id), controllers.getOne);
-
+router.patch('/:id',  validate(PerformanceValidation.update), controllers.update);
 
 export default router;

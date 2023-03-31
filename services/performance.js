@@ -27,6 +27,16 @@ const PerformanceService = {
       return { message: "error", data: error.message };
     }
   },
+  update: async (id, body) => {
+    try {
+      const savedData = await PerformanceModel.findByIdAndUpdate(id, body);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
 };
 
 export default PerformanceService;

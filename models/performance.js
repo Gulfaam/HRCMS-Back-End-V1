@@ -39,6 +39,5 @@ const schema = Schema(
         maxlength: 24,
     },
   }
-  // { timestamps: true },
 );
 export default mongoose.model("Performance", schema);

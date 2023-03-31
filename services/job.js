@@ -20,6 +20,15 @@ const JobService = {
     }
   },
 
+  getAll: async (id) => {
+    try {
+      const data = await JobModel.find();
+      return { message: "success", data };
+    } catch (error) {
+      throw error;
+    }
+  },
+
 }
 
 export default JobService;

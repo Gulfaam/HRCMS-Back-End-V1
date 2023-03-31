@@ -34,7 +34,7 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-  
+
   update: async (req, res) => {
     try {
       const addResponse = await PerformanceService.update(
@@ -51,6 +51,14 @@ const controller = {
       }
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const addResponse = await PerformanceService.delete(req.params.id);
+      return httpResponse.SUCCESS(res, addResponse.data);
+    } catch (error) {
+      return httpResponse.NOT_FOUND(res, error);
     }
   },
 };

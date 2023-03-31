@@ -37,6 +37,16 @@ const PerformanceService = {
       return { message: "error", data: error.message };
     }
   },
+  delete: async (id) => {
+    try {
+      const savedData = await PerformanceModel.findByIdAndDelete(id);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
 };
 
 export default PerformanceService;

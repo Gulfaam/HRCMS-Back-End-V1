@@ -16,7 +16,6 @@ const controller = {
 
  get: async (req, res) => {
     try{
-       //*passing the req
       const addResponse = await hierarchy.get(req.params.id);
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse);

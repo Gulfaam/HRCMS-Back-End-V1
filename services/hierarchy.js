@@ -12,7 +12,7 @@ const hierarchySerive = {
 
   get: async (id) => {
     try {
-      const savedData = await hierarchyModel.findByIdAndDelete(id);
+      const savedData = await hierarchyModel.findById(id);
       if (savedData) {
         return { message: "success", data: savedData };
       }

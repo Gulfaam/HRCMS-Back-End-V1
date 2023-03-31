@@ -40,4 +40,5 @@ const schema = new Schema({
 		default: true,
 	},
 });
+
 export default mongoose.model("User", schema);

@@ -19,7 +19,8 @@
     "install": "^0.13.0",
     "joi": "^17.9.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose":"^6.0.13",
+    "mongoose": "^6.0.13",
+    "nodemailer": "^6.9.1",
     "password-hash": "^1.2.2"
   },
   "devDependencies": {

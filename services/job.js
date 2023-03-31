@@ -41,6 +41,17 @@ const JobService = {
     }
   },
 
-}
+  delete: async (id) => {
+    try {
+      const savedData = await JobModel.findByIdAndDelete(id);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      throw error;
+    }
+  },
+};
+
 
 export default JobService;

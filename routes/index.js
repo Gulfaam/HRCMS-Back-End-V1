@@ -1,6 +1,9 @@
 import express from "express";
 import userRoute from "./user.js";
 import jobRoute from "./job.js";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();

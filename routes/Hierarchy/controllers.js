@@ -16,7 +16,7 @@ const controller = {
 
  get: async (req, res) => {
     try{
-       //*passing the req
+       //*single hierarchy 
       const addResponse = await hierarchy.get(req.params.id);
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse);
@@ -40,7 +40,7 @@ const controller = {
 
   update: async (req, res) => {
     try{
-    const addResponse = await hierarchy.update(req.params.id, req.body, {new: true} );
+    const addResponse = await hierarchy.update(req.params.id, req.body );
     return httpResponse.SUCCESS(res, addResponse.data);
    } catch (error) {
     return httpResponse.NOT_FOUND(res, error);

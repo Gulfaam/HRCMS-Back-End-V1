@@ -4,6 +4,7 @@ import express from "express";
 import userRoute from "./user/index.js";
 import attendenceRoute from "./attendence/index.js";
 import miscRoute from "./misc/index.js";
+import payrollRoute from "./payroll/index.js"
 
 
 import employeeRoute from "./employee/index.js"
@@ -19,5 +20,6 @@ unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
 unProtectedRouter.use("/attendence", attendenceRoute);
 unProtectedRouter.use("/misc", miscRoute);
+unProtectedRouter.use("/payroll", payrollRoute);
 
 export { protectedRouter, unProtectedRouter };

@@ -29,6 +29,18 @@ const JobService = {
     }
   },
 
+  
+  update: async (id, body) => {
+    try {
+      const savedData = await JobModel.findByIdAndUpdate(id, body);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      throw error;
+    }
+  },
+
 }
 
 export default JobService;

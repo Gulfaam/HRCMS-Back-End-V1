@@ -11,6 +11,14 @@ const PerformanceService = {
       return { message: "error", data: error.message };
     }
   },
+  getAll: async () => {
+    try {
+      const data = await PerformanceModel.find();
+      return { message: "success", data };
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
 };
 
 export default PerformanceService;

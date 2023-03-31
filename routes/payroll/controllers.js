@@ -28,6 +28,14 @@ const controller = {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
+    delete: async (req, res) => {
+        try {
+            const addResponse = await PayrollService.delete(req.params.id);
+            return httpResponse.SUCCESS(res, addResponse.data);
+        } catch (error) {
+            return httpResponse.NOT_FOUND(res, error);
+        }
+    },
 };
 
 export default controller;

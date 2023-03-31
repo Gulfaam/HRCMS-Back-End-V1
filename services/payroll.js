@@ -29,6 +29,19 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
+
+
+    delete: async (id) => {
+        try {
+            const savedData = await Payroll.findByIdAndDelete(id);
+            if (savedData) {
+                return { message: "success", data: savedData };
+            }
+        } catch (error) {
+            return { message: "error", data: error.message };
+        }
+    },
+
 };
 
 export default PayrollService;

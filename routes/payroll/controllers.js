@@ -20,6 +20,14 @@ const controller = {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
+    getOne: async (req, res) => {
+        try {
+            const data = await PayrollService.getOne(req.params.id);
+            return httpResponse.SUCCESS(res, data.data);
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
 };
 
 export default controller;

@@ -20,6 +20,15 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
+    getOne: async (id) => {
+        try {
+            const data = await Payroll.findById(id);
+
+            return { message: "success", data };
+        } catch (error) {
+            return { message: "error", data: error.message };
+        }
+    },
 };
 
 export default PayrollService;

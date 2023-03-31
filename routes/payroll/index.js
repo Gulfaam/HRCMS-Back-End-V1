@@ -6,5 +6,6 @@ import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
 router.post("/", validate(payroolValidation.add), controllers.add);
+router.get("/", controllers.getAll);
 
 export default router;

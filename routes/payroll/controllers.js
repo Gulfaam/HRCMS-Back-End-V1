@@ -12,6 +12,14 @@ const controller = {
             return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
         }
     },
+    getAll: async (req, res) => {
+        try {
+            const data = await PayrollService.getAll();
+            return httpResponse.SUCCESS(res, data.data);
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
 };
 
 export default controller;

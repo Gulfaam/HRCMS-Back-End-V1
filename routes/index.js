@@ -8,6 +8,7 @@ import eventRoute from "./event/index.js"
 import hierarchyRoute from "./Hierarchy/index.js";
 
 
+
 import employeeRoute from "./employee/index.js"
 
 const protectedRouter = express.Router();
@@ -22,5 +23,6 @@ unProtectedRouter.use("/attendence", attendenceRoute);
 unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);
+
 
 export { protectedRouter, unProtectedRouter };

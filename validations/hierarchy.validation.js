@@ -30,4 +30,4 @@ const validations ={
  } 
 }
 
-export default validations;
+export default validations

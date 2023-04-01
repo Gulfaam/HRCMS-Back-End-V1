@@ -21,5 +21,4 @@ const HieracrchySchema =Schema({
         required: true,
     },
 })
-
 export default mongoose.model('Hierarchy', HieracrchySchema);

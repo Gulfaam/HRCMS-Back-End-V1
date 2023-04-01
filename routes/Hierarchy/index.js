@@ -9,4 +9,5 @@ router.post("/", authenticate,validate(authValidation.add),controllers.add);
 
 
 
+
 export default router;

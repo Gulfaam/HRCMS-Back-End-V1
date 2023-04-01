@@ -13,9 +13,6 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
   },
-
-<<<<<<< Updated upstream
- 
   getAll: async (req, res) => {
     try {
       const data = await hierarchy.getAll();

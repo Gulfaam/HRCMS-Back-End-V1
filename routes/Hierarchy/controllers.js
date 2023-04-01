@@ -36,11 +36,21 @@ const controller = {
 
   update:async (req,res) => {
     try{
-      const data =await hierarchy.update(req.params.id, req.body, {new: true});
+      const data =await hierarchy.update(req.params.id, req.body,{new: true});
       return httpResponse.SUCCESS(res,data.data);
     }
     catch(error){
       return httpResponse.NOT_FOUND(res, error);
+    }
+  },
+
+  delete:async (req,res) => {
+    try{
+      const data=await hierarchy.delete(req.params.id,{new:true});
+     return httpResponse.SUCCESS(res,data.data);
+    }
+    catch(error){
+      return httpResponse.NOT_FOUND(res,error);
     }
   }
 }

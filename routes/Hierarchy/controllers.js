@@ -14,6 +14,8 @@ const controller = {
     }
   },
 
+<<<<<<< Updated upstream
+ 
   getAll: async (req, res) => {
     try {
       const data = await hierarchy.getAll();

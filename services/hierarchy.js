@@ -11,14 +11,19 @@ const hierarchySerive = {
   },
   get: async (id)=>{
     try{
-        const data= await hierarchyModel.findById(id);
+        const data = await hierarchyModel.findById(id);
+        if(data){
         return { message: "success", data };
+        }
+        else {
+            return { message: "failed", data };
+        }
     }
     catch(error){
      return { message: "error", data: error.message };   
     }
   },
-  
+
   add: async (body) => {
     try {
       const savedData = await hierarchyModel.create(body);
@@ -29,6 +34,18 @@ const hierarchySerive = {
       return { message: "error", data: error.message };
     }
   },
+  update:async (id,body)=>{
+    try{
+    
+        const savedData=await hierarchyModel.findByIdAndUpdate(id,body);
+        if (savedData) {
+            return { message: "success", data: savedData };
+          }
+    }
+    catch(error){
+       return { message: "error", data: error.message };
+    }
+  }
 };
 
 export default hierarchySerive;

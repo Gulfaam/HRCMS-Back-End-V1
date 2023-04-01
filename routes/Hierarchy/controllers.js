@@ -17,7 +17,7 @@ const controller = {
   get: async (req, res) => {
     const addResponse = await hierarchy.get(req.params.id);
     if (addResponse.message === "success") {
-      return httpResponse.CREATED(res, addResponse);
+      return httpResponse.SUCCESS(res, addResponse);
     } else if (addResponse.message === "failed") {
       return httpResponse.CONFLICT(res, addResponse.data);
     } else {
@@ -33,6 +33,16 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
+
+  update:async (req,res) => {
+    try{
+      const data =await hierarchy.update(req.params.id, req.body, {new: true});
+      return httpResponse.SUCCESS(res,data.data);
+    }
+    catch(error){
+      return httpResponse.NOT_FOUND(res, error);
+    }
+  }
 }
 
 export default controller;

@@ -28,11 +28,10 @@ router.get("/:id", authenticate, async (req, res) => {
     return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
   }
 });
-router.get("/", async (req, res) => {
+router.get("/", authenticate, async (req, res) => {
   const addResponse = await PermissionService.findByFilter(req.query);
   return httpResponse.SUCCESS(res, addResponse);
 });
-
 router.patch("/:id", authenticate, async (req, res) => {
   const addResponse = await PermissionService.update(req.params.id, req.body);
   if (addResponse.message === "success") {

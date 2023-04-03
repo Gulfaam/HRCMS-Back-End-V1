@@ -28,5 +28,14 @@ router.get("/:id",authenticate, async (req, res) => {
     return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
   }
 });
-
+router.patch("/:id",authenticate,  async (req, res) => {
+  const addResponse = await PermissionService.update(req.params.id, req.body);
+  if (addResponse.message === "success") {
+    return httpResponse.CREATED(res, addResponse.data);
+  } else if (addResponse.message === "failed") {
+    return httpResponse.CONFLICT(res, addResponse.data);
+  } else {
+    return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+  }
+});
 export default router;

@@ -6,11 +6,21 @@ const PermissionService = {
       const savedData = await PermissionModel.create(body);
       if (savedData) {
         return { message: "success", data: savedData };
+      } else {
+        return { message: "error", data: {} };
       }
     } catch (error) {
       throw error;
     }
   },
+  findByFilter: async (query) => {
+    try {
+      return PermissionModel.find(query); // see, you are not returing any object
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getById: async (id) => {
     try {
       const data = await PermissionModel.findById(id);
@@ -24,8 +34,9 @@ const PermissionService = {
       const savedData = await PermissionModel.findByIdAndUpdate(id, body);
       if (savedData) {
         return { message: "success", data: savedData };
+      } else {
+        return { message: "error", data: {} };
       }
-
     } catch (error) {
       throw error;
     }
@@ -44,5 +55,4 @@ const PermissionService = {
     }
   },
 };
-
 export default PermissionService;

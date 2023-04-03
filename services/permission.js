@@ -11,7 +11,14 @@ const PermissionService = {
       throw error;
     }
   },
-  
-}
+  getById: async (id) => {
+    try {
+      const data = await PermissionModel.findById(id);
+      return { message: "success", data };
+    } catch (error) {
+      throw error;
+    }
+  },
+};
 
 export default PermissionService;

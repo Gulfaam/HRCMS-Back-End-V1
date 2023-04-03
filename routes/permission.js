@@ -18,8 +18,8 @@ router.post("/", authenticate, validate(schema.create), async (req, res) => {
   }
 });
 
-router.get("/:id",authenticate, async (req, res) => {
-  const addResponse = await PermissionService.getById(req.params.id)
+router.get("/:id", authenticate, async (req, res) => {
+  const addResponse = await PermissionService.getById(req.params.id);
   if (addResponse.message === "success") {
     return httpResponse.CREATED(res, addResponse.data);
   } else if (addResponse.message === "failed") {
@@ -28,12 +28,24 @@ router.get("/:id",authenticate, async (req, res) => {
     return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
   }
 });
-router.patch("/:id",authenticate,  async (req, res) => {
+router.patch("/:id", authenticate, async (req, res) => {
   const addResponse = await PermissionService.update(req.params.id, req.body);
   if (addResponse.message === "success") {
     return httpResponse.CREATED(res, addResponse.data);
   } else if (addResponse.message === "failed") {
     return httpResponse.CONFLICT(res, addResponse.data);
+  } else {
+    return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const addResponse = await PermissionService.delete(req.params.id);
+  if (addResponse.message === "success") {
+    return httpResponse.SUCCESS(res, addResponse.data);
+  } else if (addResponse.message === "error") {
+    return httpResponse.NOT_FOUND(res, addResponse.data);
+  
   } else {
     return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
   }

@@ -25,6 +25,20 @@ const PermissionService = {
       if (savedData) {
         return { message: "success", data: savedData };
       }
+
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      const savedData = await PermissionModel.findByIdAndDelete(id); // could not find the record
+      if (savedData) {
+        return { message: "success", data: savedData };
+      } else {
+        return { message: "error", data: {} };
+      }
     } catch (error) {
       throw error;
     }

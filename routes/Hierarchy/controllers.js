@@ -37,9 +37,10 @@ const controller = {
   update:async (req,res) => {
     try{
       const data =await hierarchy.update(req.params.id, req.body, {new: true});
-      return httpResponse.SUCCESS(res,data.data);
+      return httpResponse.SUCCESS(res,data.data)
     }
     catch(error){
+      console.log('h');
       return httpResponse.NOT_FOUND(res, error);
     }
   }

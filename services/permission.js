@@ -1,5 +1,4 @@
 import PermissionModel from "../models/permission.js";
-import mongoose from "mongoose";
 const PermissionService = {
   create: async (body) => {
     try {
@@ -15,7 +14,7 @@ const PermissionService = {
   },
   findByFilter: async (query) => {
     try {
-      return PermissionModel.find(query); // see, you are not returing any object
+      return PermissionModel.find(query);
     } catch (error) {
       throw error;
     }
@@ -44,7 +43,7 @@ const PermissionService = {
 
   delete: async (id) => {
     try {
-      const savedData = await PermissionModel.findByIdAndDelete(id); // could not find the record
+      const savedData = await PermissionModel.findByIdAndDelete(id);
       if (savedData) {
         return { message: "success", data: savedData };
       } else {

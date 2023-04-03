@@ -18,6 +18,15 @@ router.post("/", authenticate, validate(schema.create), async (req, res) => {
   }
 });
 
-
+router.get("/:id",authenticate, async (req, res) => {
+  const addResponse = await PermissionService.getById(req.params.id)
+  if (addResponse.message === "success") {
+    return httpResponse.CREATED(res, addResponse.data);
+  } else if (addResponse.message === "failed") {
+    return httpResponse.CONFLICT(res, addResponse.data);
+  } else {
+    return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+  }
+});
 
 export default router;

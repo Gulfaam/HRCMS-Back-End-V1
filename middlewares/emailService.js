@@ -15,7 +15,7 @@ const transporterFun = (email) => {
     const OTP = otpGenerator.generate(6, { alphabets: false, upperCase: false, specialChars: false, Number: true });
 
     const mailOptions = {
-        from: process.env.EMAIL_FROM,
+        from: process.env.email,
         to: email,
         subject: 'OTP Verification',
         text: `Your OTP code is ${OTP}`

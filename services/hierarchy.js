@@ -1,6 +1,6 @@
 import hierarchyModel from "../models/Hierarchy.js";
 
-const hierarchySerive = {
+const hierarchy = {
     add: async (body) => {
         try {
           const savedData = await hierarchyModel.create(body);
@@ -13,4 +13,4 @@ const hierarchySerive = {
       },
     }
 
-export default hierarchySerive;
+export default hierarchy;

@@ -8,7 +8,7 @@ const controller = {
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse);
     } else if (addResponse.message === "failed") {
-      return httpResponse.CONFLICT(res, addResponse.data);
+      return httpResponse.BAD_REQUEST(res, addResponse.data);
     } else {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
@@ -19,7 +19,7 @@ const controller = {
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse);
     } else if (addResponse.message === "failed") {
-      return httpResponse.CONFLICT(res, addResponse.data);
+      return httpResponse.BAD_REQUEST(res, addResponse.data);
     } else {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }

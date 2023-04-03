@@ -19,6 +19,16 @@ const PermissionService = {
       throw error;
     }
   },
+  update: async (id, body) => {
+    try {
+      const savedData = await PermissionModel.findByIdAndUpdate(id, body);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default PermissionService;

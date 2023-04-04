@@ -8,7 +8,7 @@ const hierarchySerive = {
     } catch (error) {
       return { message: "error", data: error.message };
     }
-  },
+
   get: async (id)=>{
     try{
         const data = await hierarchyModel.findById(id);
@@ -23,6 +23,8 @@ const hierarchySerive = {
      return { message: "error", data: error.message };   
     }
   },
+
+
 
   add: async (body) => {
     try {

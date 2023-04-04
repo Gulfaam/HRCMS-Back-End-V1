@@ -9,7 +9,15 @@ const AttendenceService = {
       return { message: "error", data: error.message };
     }
   },
-
+  get: async (id) => {
+    try {
+      const data = await AttendenceModel.findById(id);
+      return { message: "success", data };
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+   
   add: async (body) => {
     try {
       const savedData = await AttendenceModel.create(body);

@@ -31,6 +31,14 @@ const schema = Schema({
         type: Number,
         required: true
     },
+    approved_date:{
+        type:Date,
+        required:true
+    },
+    employee_id: { 
+        type: mongoose.Schema.Types.ObjectId,
+         ref:'Employee', 
+        required: true },
 },
 // { timestamps: true },
 );

@@ -18,7 +18,7 @@ const unProtectedRouter = express.Router();
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
-unProtectedRouter.use("/attendence", attendenceRoute);
+unProtectedRouter.use("/attendance", attendenceRoute);
 unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);

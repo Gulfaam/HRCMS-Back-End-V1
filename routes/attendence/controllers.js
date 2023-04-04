@@ -10,6 +10,15 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
+  get: async (req, res) => {
+    try {
+      console.log('helloo')
+      const data = await AttendenceService.get(req.params.id);
+      return httpResponse.SUCCESS(res, data.data);
+    } catch (error) {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
 
   add: async (req, res) => {
     const addResponse = await AttendenceService.add(req.body);
@@ -28,13 +37,6 @@ const controller = {
 } catch (error) {
     return httpResponse.NOT_FOUND(res, error);
   }
-    // if (addResponse.message === "success") {
-    //   return httpResponse.SUCCESS(res, addResponse.data);
-    // } else if (addResponse.message === "failed") {
-    //   return httpResponse.CONFLICT(res, addResponse.data);
-    // } else {
-    //   return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
-    // }
   },
   delete: async (req, res) => {
     try {
@@ -43,13 +45,6 @@ const controller = {
     } catch (error) {
         return httpResponse.NOT_FOUND(res, error);
     }
-    // if (addResponse.message === "success") {
-    //   return httpResponse.SUCCESS(res, addResponse.data);
-    // } else if (addResponse.message === "failed") {
-    //   return httpResponse.CONFLICT(res, addResponse.data);
-    // } else {
-    //   return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
-    // }
   },
 }
 

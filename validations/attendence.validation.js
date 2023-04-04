@@ -15,6 +15,8 @@ const schema = {
         updated_date: Joi.date().iso().required(),
         remarks: Joi.string().max(250),
         monthly_hours: Joi.number().required(),
+        approved_date:Joi.string().required(),
+        employee_id: Joi.string().required(),
     }),
   },
   update: {
@@ -30,6 +32,8 @@ const schema = {
         updated_date: Joi.date().iso(),
         remarks: Joi.string(),
         monthly_hours: Joi.number(),
+        approved_date:Joi.number().required(),
+        employee_id: Joi.string().required(),
     }),
 },
 };

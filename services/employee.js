@@ -23,7 +23,6 @@ const EmployeeServices = {
 
     add: async (body, path) => {
         try {
-            console.log(path)
             path = path.replace(`\\`, `/`);
             const file = {
                 name: body.name,
@@ -40,6 +39,7 @@ const EmployeeServices = {
                 image: path,
                 date_of_birth: body.date_of_birth,
                 blood_group: body.blood_group,
+                probation_period: body.probation_period
             };
             // }
             const savedData = await EmployeeModel.create(file);
@@ -75,6 +75,7 @@ const EmployeeServices = {
                 image: path || existingEmployee.image,
                 date_of_birth: body.date_of_birth || existingEmployee.date_of_birth,
                 blood_group: body.blood_group || existingEmployee.blood_group,
+                probation_period:body.probation_period || existingEmployee.probation_period
             };
             const savedData = await EmployeeModel.findByIdAndUpdate(id, file, { new: true });
             if (savedData) {

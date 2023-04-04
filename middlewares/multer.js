@@ -1,8 +1,9 @@
+
 import multer from "multer";
 import path from "path";
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: (req,file, cb) => {
         cb(null, "./public");
     },
     filename: (req, file, cb) => {
@@ -12,10 +13,12 @@ const storage = multer.diskStorage({
                 .toLowerCase()
                 .replace(/\s+/g, "-") +
             "-" +
-            Date.now().toString() +
+  Date.now().toString() +
             path.extname(file.originalname).toLowerCase();
         cb(null, fileName);
     },
 });
+
+
 
 export default multer({ storage });

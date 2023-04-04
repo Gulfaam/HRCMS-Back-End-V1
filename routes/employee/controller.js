@@ -20,8 +20,7 @@ const controller = {
     },
 
     add: async (req, res) => {
-
-        const addResponse = await EmployeeServices.add(req.body, req.file.path);
+        const addResponse = await EmployeeServices.add(req.body,req.file.path);
         if (addResponse.message === "success") {
             return httpResponse.CREATED(res, addResponse.data);
         } else if (addResponse.message === "failed") {

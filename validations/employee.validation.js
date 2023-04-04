@@ -23,7 +23,7 @@ export default {
             image: Joi.string(),
             date_of_birth: Joi.date().iso().required(),
             blood_group: Joi.string().valid('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-').required(),
-
+            probation_period: Joi.number().default(0)
         }),
     },
 
@@ -46,7 +46,7 @@ export default {
             image: Joi.string(),
             date_of_birth: Joi.date().iso(),
             blood_group: Joi.string().valid('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'),
-
+            probation_period: Joi.number().default(0)
         }),
     },
 

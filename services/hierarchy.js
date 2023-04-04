@@ -1,6 +1,7 @@
+
 import hierarchyModel from "../models/Hierarchy.js";
 
-const hierarchySerive = {
+const hierarchy = {
   getAll: async () => {
     try {
       const data = await hierarchyModel.find();
@@ -28,7 +29,7 @@ const hierarchySerive = {
     try {
       const savedData = await hierarchyModel.create(body);
       if (savedData) {
-        return { message: "success", data: savedData };
+        return {savedData};
       }
     } catch (error) {
       return { message: "error", data: error.message };
@@ -37,27 +38,23 @@ const hierarchySerive = {
   update:async (id,body)=>{
     try{
         const savedData=await hierarchyModel.findByIdAndUpdate(id,body);
-        //*first checking if the hierarchy even exist on this id
-        if (savedData) {
-            return { message: "success", data: savedData };
-          }
+            return {savedData};
     }
     catch(error){
        return { message: "error", data: error.message };
     }
   },
-  delete:async (id)=>{
+  delete: async (id)=> {
     try{
-    const data=await hierarchyModel.findByIdAndDelete(id);
-    if(data){
-     return { message: "success", data };
-    }
-    }
-    catch(error){
-      return {message:"error",data:error.message}
-    }
+      const savedData=await hierarchyModel.findByIdAndDelete(id,{new:true});
+      if (savedData) {
+          return {savedData};
+        }
   }
-
+  catch(error){
+     return { message: "error", data: error.message };
+  }
+  }
 };
 
-export default hierarchySerive;
+export default hierarchy;

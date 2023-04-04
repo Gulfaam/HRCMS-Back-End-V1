@@ -1,5 +1,5 @@
 import express from "express";
-import authValidation from "../../validations/hierarchy.validation.js";
+import authValidation from "../../validations/hierarchy.js";
 import validate from "../../middlewares/validate.js";
 import controllers from "./controllers.js";
 import authenticate from "../../middlewares/authenticate.js";

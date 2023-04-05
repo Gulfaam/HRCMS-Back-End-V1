@@ -10,6 +10,18 @@ const controller = {
       return httpResponse.CREATED(res, addResponse);
     } else if (addResponse.message === "failed") {
       return httpResponse.BAD_REQUEST(res, addResponse.data);
+
+    } else {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+    }
+  },
+  
+  get: async (req, res) => {
+    const addResponse = await hierarchy.get(req.params.id);
+    if (addResponse.message === "success") {
+      return httpResponse.CREATED(res, addResponse);
+    } else if (addResponse.message === "failed") {
+      return httpResponse.BAD_REQUEST(res, addResponse.data);
     }
    } 
    catch(error)

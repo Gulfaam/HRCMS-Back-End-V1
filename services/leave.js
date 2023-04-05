@@ -12,7 +12,16 @@ const leaveservices = {
                     return { message: "error", data: error.message };
                 }
             },
-         
+            getAll: async () => {
+                   {
+                    try {
+                      const data = await leaveModel.find();
+                      return { data };
+                    } catch (error) {
+                      return { message: "error", data: error.message };
+                    }
+                }
+            }
 }
 
 export default leaveservices;

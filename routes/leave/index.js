@@ -7,6 +7,8 @@ import authenticate from "../../middlewares/authenticate.js";
 const router = express.Router();
 
 router.post("/",authenticate,validate(authValidation.add),controllers.add);
+router.get("/",authenticate,controllers.getAll);
+
 
 
 

@@ -15,7 +15,7 @@ const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 
 // Protected Routes
-console.log('hello')
+
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);

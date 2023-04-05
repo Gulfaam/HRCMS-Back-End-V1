@@ -10,6 +10,9 @@ import leaveRoute from "./leave/index.js";
 
 
 import employeeRoute from "./employee/index.js"
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();

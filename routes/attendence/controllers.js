@@ -12,7 +12,6 @@ const controller = {
   },
   get: async (req, res) => {
     try {
-      console.log('helloo')
       const data = await AttendenceService.get(req.params.id);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {

@@ -2,7 +2,7 @@ import express from "express";
 
 // routes
 import userRoute from "./user/index.js";
-import attendenceRoute from "./attendence/index.js";
+import attendanceRoute from "./attendence/index.js";
 import miscRoute from "./misc/index.js";
 import eventRoute from "./event/index.js"
 import hierarchyRoute from "./Hierarchy/index.js";
@@ -18,7 +18,7 @@ const unProtectedRouter = express.Router();
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
-unProtectedRouter.use("/attendance", attendenceRoute);
+unProtectedRouter.use("/attendance", attendanceRoute);
 unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);

@@ -41,7 +41,6 @@ const EmployeeServices = {
                 blood_group: body.blood_group,
                 probation_period: body.probation_period
             };
-            // }
             const savedData = await EmployeeModel.create(file);
             if (savedData) {
                 return { message: "success", data: savedData };

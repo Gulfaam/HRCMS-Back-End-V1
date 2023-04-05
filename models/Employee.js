@@ -68,11 +68,6 @@ const employeeSchema = mongoose.Schema({
         enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
         required: true,
     },
-    probation_period: 
-    {
-        type: Number, 
-        default: 0
-     }
 })
 
 export default mongoose.model('Employee', employeeSchema)

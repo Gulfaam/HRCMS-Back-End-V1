@@ -40,8 +40,22 @@ const controller = {
       return httpResponse.SUCCESS(res,data.data)
     }
     catch(error){
-      console.log('h');
       return httpResponse.NOT_FOUND(res, error);
+    }
+  },
+
+  delete:async (req,res) => {
+    try{
+      const data =await hierarchy.delete(req.params.id);
+      if(data===undefined){
+      httpResponse.NOT_FOUND(res,data);
+      }
+    else{
+      return httpResponse.SUCCESS(res,data)
+    }
+  }
+    catch(error){
+      return httpResponse.NOT_FOUND(res, error);``
     }
   }
 }

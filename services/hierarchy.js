@@ -45,6 +45,18 @@ const hierarchySerive = {
     catch(error){
        return { message: "error", data: error.message };
     }
+  },
+  delete: async (id)=> {
+    try{
+      console.log(id);
+      const savedData=await hierarchyModel.findByIdAndDelete(id,{new:true});
+      if (savedData) {
+          return {savedData};
+        }
+  }
+  catch(error){
+     return { message: "error", data: error.message };
+  }
   }
 };
 

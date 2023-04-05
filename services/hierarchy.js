@@ -1,6 +1,7 @@
+import Hierarchy from "../models/Hierarchy.js";
 import hierarchyModel from "../models/Hierarchy.js";
 
-const hierarchySerive = {
+const hierarchy = {
   getAll: async () => {
     try {
       const data = await hierarchyModel.find();
@@ -18,13 +19,11 @@ const hierarchySerive = {
         else {
             return { message: "failed", data };
         }
-    }
+  },
     catch(error){
      return { message: "error", data: error.message };   
     }
   },
-
-
 
   add: async (body) => {
     try {
@@ -50,4 +49,4 @@ const hierarchySerive = {
   }
 };
 
-export default hierarchySerive;
+export default hierarchy;

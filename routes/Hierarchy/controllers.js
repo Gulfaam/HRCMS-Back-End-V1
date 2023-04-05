@@ -14,16 +14,7 @@ const controller = {
     } else {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
-  },
-  
-  get: async (req, res) => {
-    const addResponse = await hierarchy.get(req.params.id);
-    if (addResponse.message === "success") {
-      return httpResponse.SUCCESS(res, addResponse);
-    } else if (addResponse.message === "failed") {
-      return httpResponse.BAD_REQUEST(res, addResponse.data);
-    }
-   } 
+  }
    catch(error)
    {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);

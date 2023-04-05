@@ -1,4 +1,4 @@
-import Hierarchy from "../models/Hierarchy.js";
+
 import hierarchyModel from "../models/Hierarchy.js";
 
 const hierarchy = {

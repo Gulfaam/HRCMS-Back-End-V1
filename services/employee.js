@@ -4,7 +4,7 @@ const EmployeeServices = {
     getAll: async () => {
         try {
             const data = await EmployeeModel.find();
-
+            console.log(data);
             return { message: "success", data };
         } catch (error) {
             return { message: "error", data: error.message };

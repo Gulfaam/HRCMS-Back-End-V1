@@ -4,24 +4,33 @@ import httpResponse from "../../utils/httpResponse.js";
 
 const controller = {
   add: async (req, res) => {
-    const addResponse = await hierarchy.add(req.body);
-    if (addResponse.message === "success") {
-      return httpResponse.CREATED(res, addResponse);
-    } else if (addResponse.message === "failed") {
-      return httpResponse.CONFLICT(res, addResponse.data);
-    } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+    try{
+      const addResponse = await hierarchy.add(req.body);
+      if(addResponse.savedData===null || ' '){
+      return httpResponse.CONFLICT(res,addResponse.savedData);
+      }
+      else{
+        return httpResponse.SUCCESS(res,addResponse)
+      }
     }
-  },
+    catch(addResponse) {
+       return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.savedData)
+  }
+},
+  
 
   get: async (req, res) => {
+    try{
     const addResponse = await hierarchy.get(req.params.id);
-    if (addResponse.message === "success") {
-      return httpResponse.SUCCESS(res, addResponse);
-    } else if (addResponse.message === "failed") {
-      return httpResponse.CONFLICT(res, addResponse.data);
-    } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+    if(addResponse.data===null){
+      return httpResponse.NOT_FOUND(res,addResponse.data);
+    }
+    else {
+      return httpResponse.SUCCESS(res,addResponse.data);
+    }
+    }
+    catch (error){
+        return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.data);
     }
   },
 
@@ -37,19 +46,25 @@ const controller = {
   update:async (req,res) => {
     try{
       const data =await hierarchy.update(req.params.id, req.body, {new: true});
-      return httpResponse.SUCCESS(res,data)
+      if(data.savedData===null){
+      return httpResponse.NOT_FOUND(res,data)
+      }
+      else{
+        return httpResponse.SUCCESS(res,data);
+      }
     }
     catch(error){
-      return httpResponse.NOT_FOUND(res, error);
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
+
   delete:async (req,res) => {
     try{
       const data =await hierarchy.delete(req.params.id);
-      if(data===undefined){
+      if(data.savedData===null){
       httpResponse.NOT_FOUND(res,data);
       }
-    else{
+     else{
       return httpResponse.SUCCESS(res,data)
     }
   }

@@ -7,6 +7,7 @@ import miscRoute from "./misc/index.js";
 import eventRoute from "./event/index.js";
 import hierarchyRoute from "./Hierarchy/index.js";
 import jobRoute from "./job/index.js";
+import permissionRoute from "./permission/index.js";
 
 import employeeRoute from "./employee/index.js";
 
@@ -23,4 +24,6 @@ unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/job", jobRoute);
+unProtectedRouter.use("/permission", permissionRoute);
+
 export { protectedRouter, unProtectedRouter };

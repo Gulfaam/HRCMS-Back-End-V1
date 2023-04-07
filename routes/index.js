@@ -7,6 +7,7 @@ import miscRoute from "./misc/index.js";
 import eventRoute from "./event/index.js"
 import hierarchyRoute from "./Hierarchy/index.js";
 import leaveRoute from "./leaves/index.js";
+import leaveRequest from "./leaveRequest/index.js"
 
 
 import employeeRoute from "./employee/index.js"
@@ -24,5 +25,7 @@ unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/leave", leaveRoute);
+unProtectedRouter.use("/leaveRequest", leaveRequest);
+
 
 export { protectedRouter, unProtectedRouter };

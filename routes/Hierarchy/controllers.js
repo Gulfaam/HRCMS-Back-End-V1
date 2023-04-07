@@ -1,4 +1,3 @@
-
 import hierarchy from "../../services/hierarchy.js";
 import httpResponse from "../../utils/httpResponse.js";
 
@@ -12,7 +11,6 @@ const controller = {
       else{
         return httpResponse.SUCCESS(res,addResponse.data)
       }
-    }
     catch(addResponse) {
        return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.data)
   }
@@ -33,7 +31,7 @@ const controller = {
         return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
     }
   },
-
+  
   getAll: async (req, res) => {
     try {
       const data = await hierarchy.getAll();
@@ -41,12 +39,11 @@ const controller = {
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
     }
-  },
+  
 
   update:async (req,res) => {
     try{
       const data =await hierarchy.update(req.params.id, req.body, {new: true});
-      console.log(data.data)
       if(data.data===null){
       return httpResponse.NOT_FOUND(res,data.data)
       }
@@ -74,5 +71,8 @@ const controller = {
     }
   }
 }
+
+};
+
 
 export default controller;

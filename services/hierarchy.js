@@ -1,3 +1,4 @@
+import Hierarchy from "../models/Hierarchy.js";
 import hierarchyModel from "../models/Hierarchy.js";
 
 const hierarchy = {
@@ -9,6 +10,7 @@ const hierarchy = {
       return { data:error.message };
     }
   },
+
 
   get: async (id) => {
     try {

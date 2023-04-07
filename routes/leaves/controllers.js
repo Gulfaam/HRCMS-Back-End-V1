@@ -7,16 +7,15 @@ const controller = {
   add: async (req, res) => {
     try{
       const addResponse = await hierarchy.add(req.body);
-      console.log(addResponse.savedData);
       if(addResponse.savedData===null || ''){
-      return httpResponse.CONFLICT(res,addResponse.savedData);
+      return httpResponse.CONFLICT(res,addResponse.data);
       }
       else{
-        return httpResponse.SUCCESS(res,addResponse)
+        return httpResponse.SUCCESS(res,addResponse.data)
       }
     }
     catch(addResponse) {
-       return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.savedData)
+       return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.error)
   }
 },
   
@@ -32,7 +31,7 @@ const controller = {
     }
     }
     catch (error){
-        return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.data);
+        return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
     }
   },
 
@@ -41,7 +40,7 @@ const controller = {
       const data = await hierarchy.getAll();
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error.data);
     }
   },
 

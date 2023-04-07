@@ -21,9 +21,8 @@ const hierarchy = {
 
   add: async (body) => {
     try {
-      const savedData = await hierarchyModel.create(body);
-      console.log(savedData);
-      return {savedData};
+      const data = await hierarchyModel.create(body);
+      return {data};
     } catch (error) {
       return { data: error.message };
     }

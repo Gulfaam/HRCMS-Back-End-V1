@@ -6,13 +6,14 @@ const hierarchy = {
       const data = await hierarchyModel.find();
       return { data };
     } catch (error) {
-      return { error };
+      return { data:error.message };
     }
   },
 
   get: async (id) => {
     try {
       const data = await hierarchyModel.findById(id);
+      console.log(data)
       return { data };
     } catch (error) {
       return {data: error.message};
@@ -21,16 +22,16 @@ const hierarchy = {
 
   add: async (body) => {
     try {
-      const savedData = await hierarchyModel.create(body);
-      return {savedData};
+      const data = await hierarchyModel.create(body);
+      return {data};
     } catch (error) {
       return { data: error.message };
     }
   },
   update: async (id, body) => {
     try {
-      const savedData = await hierarchyModel.findByIdAndUpdate(id, body);
-      return {savedData};
+      const data = await hierarchyModel.findByIdAndUpdate(id, body);
+      return {data};
     } catch (error) {
       return { data: error.message };
     }
@@ -38,10 +39,10 @@ const hierarchy = {
   
   delete: async (id) => {
     try {
-      const savedData = await hierarchyModel.findByIdAndDelete(id, {
+      const data = await hierarchyModel.findByIdAndDelete(id, {
         new: true,
       });
-      return savedData;
+      return {data};
     } catch (error) {
       return { data: error.message };
     }

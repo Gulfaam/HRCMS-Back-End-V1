@@ -15,7 +15,7 @@ const controller = {
       }
     }
     catch(addResponse) {
-       return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.error)
+       return httpResponse.INTERNAL_SERVER_ERROR(res,addResponse.data)
   }
 },
   

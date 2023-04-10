@@ -54,9 +54,27 @@ const UserService = {
     }
   },
 
-  getAll: async () => {
+  getAll: async (limit, skip, query) => {
     try {
-      const data = await UserModel.find();
+      const sort = {};
+      if (query.sort) {
+        if (typeof query.sort === "object") {
+          query.sort.forEach((element) => {
+            if (element.startsWith("-")) {
+              sort[element.substring(1)] = -1;
+            } else {
+              sort[element] = 1;
+            }
+          });
+        } else {
+          if (query.sort.startsWith("-")) {
+            sort[query.sort.substring(1)] = -1;
+          } else {
+            sort[query.sort] = 1;
+          }
+        }
+      }
+      const data = await UserModel.find(query).limit(limit).skip(skip).sort(sort);
 
       return { message: "success", data };
     } catch (error) {

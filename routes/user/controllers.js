@@ -43,7 +43,9 @@ const controller = {
 
   getAll: async (req, res) => {
     try {
-      const data = await UserService.getAll();
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = parseInt(req.query.skip) || 0;
+      const data = await UserService.getAll(limit, skip, req.query);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);

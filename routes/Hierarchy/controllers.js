@@ -1,4 +1,3 @@
-
 import hierarchy from "../../services/hierarchy.js";
 import httpResponse from "../../utils/httpResponse.js";
 
@@ -34,7 +33,7 @@ const controller = {
         return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
     }
   },
-
+  
   getAll: async (req, res) => {
     try {
       const data = await hierarchy.getAll();
@@ -74,5 +73,6 @@ const controller = {
     }
   }
 }
+
 
 export default controller;

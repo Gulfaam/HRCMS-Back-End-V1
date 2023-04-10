@@ -1,3 +1,4 @@
+import Hierarchy from "../models/Hierarchy.js";
 import hierarchyModel from "../models/Hierarchy.js";
 
 const hierarchy = {
@@ -10,10 +11,10 @@ const hierarchy = {
     }
   },
 
+
   get: async (id) => {
     try {
       const data = await hierarchyModel.findById(id);
-      console.log(data)
       return { data };
     } catch (error) {
       return {data: error.message};
@@ -37,6 +38,7 @@ const hierarchy = {
     }
   },
   
+
   delete: async (id) => {
     try {
       const data = await hierarchyModel.findByIdAndDelete(id, {

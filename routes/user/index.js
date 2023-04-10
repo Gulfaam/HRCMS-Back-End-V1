@@ -3,7 +3,6 @@ import authValidation from "../../validations/user.validation.js";
 import validate from "../../middlewares/validate.js";
 import controller from "./controller.js";
 import authenticate from "../../middlewares/authenticate.js";
-import transporterFun from "../../middlewares/emailService.js";
 
 const router = express.Router();
 router.get("/", controller.getAll);

@@ -21,7 +21,6 @@ const controller = {
   get: async (req, res) => {
     try{
     const addResponse = await hierarchy.get(req.params.id);
-    console.log(addResponse.data)
     if(addResponse.data===null){
       return httpResponse.NOT_FOUND(res,addResponse.data);
     }

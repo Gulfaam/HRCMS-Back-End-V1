@@ -29,6 +29,7 @@ const hierarchy = {
       return { data: error.message };
     }
   },
+
   update: async (id, body) => {
     try {
       const data = await hierarchyModel.findByIdAndUpdate(id, body);
@@ -37,7 +38,6 @@ const hierarchy = {
       return { data: error.message };
     }
   },
-  
 
   delete: async (id) => {
     try {

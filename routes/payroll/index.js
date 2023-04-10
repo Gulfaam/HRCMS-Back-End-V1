@@ -6,10 +6,10 @@ import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
 router.post("/", validate(payroolValidation.add), controllers.add);
-router.get("/", controllers.getAll);
-router.get("/:id", controllers.getOne);
-router.delete("/:id", controllers.delete);
-router.patch("/:id", validate(payroolValidation.update), controllers.update);
+router.get("/", authenticate, controllers.getAll);
+router.get("/:id", authenticate, validate(payroolValidation.update), controllers.getOne);
+router.delete("/:id", authenticate, validate(payroolValidation.update), controllers.delete);
+router.patch("/:id", authenticate, validate(payroolValidation.update), controllers.update);
 
 
 export default router;

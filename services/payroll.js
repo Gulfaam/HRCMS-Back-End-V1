@@ -11,9 +11,9 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
-    getAll: async () => {
+    getAll: async (limit, skip) => {
         try {
-            const data = await Payroll.find();
+            const data = await Payroll.find().limit(limit).skip(skip);
 
             return { message: "success", data };
         } catch (error) {

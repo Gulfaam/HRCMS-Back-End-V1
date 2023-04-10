@@ -14,7 +14,7 @@ const schema = Schema({
         type: Number,
         required: true,
     },
-    increments_ids: {
+    increment_ids: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Increment",
         required: true

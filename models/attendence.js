@@ -32,6 +32,6 @@ const schema = Schema({
         required: true
     },
 },
-// { timestamps: true },
+
 );
 export default mongoose.model("Attendence", schema);

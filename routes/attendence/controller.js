@@ -28,13 +28,6 @@ const controller = {
 } catch (error) {
     return httpResponse.NOT_FOUND(res, error);
   }
-    // if (addResponse.message === "success") {
-    //   return httpResponse.SUCCESS(res, addResponse.data);
-    // } else if (addResponse.message === "failed") {
-    //   return httpResponse.CONFLICT(res, addResponse.data);
-    // } else {
-    //   return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
-    // }
   },
   delete: async (req, res) => {
     try {
@@ -43,13 +36,6 @@ const controller = {
     } catch (error) {
         return httpResponse.NOT_FOUND(res, error);
     }
-    // if (addResponse.message === "success") {
-    //   return httpResponse.SUCCESS(res, addResponse.data);
-    // } else if (addResponse.message === "failed") {
-    //   return httpResponse.CONFLICT(res, addResponse.data);
-    // } else {
-    //   return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
-    // }
   },
 }
 

@@ -1,34 +1,52 @@
-import Hierarchy from "../models/Hierarchy.js";
+
 import hierarchyModel from "../models/Hierarchy.js";
 
 const hierarchy = {
   getAll: async () => {
     try {
       const data = await hierarchyModel.find();
-      return { message: "success", data };
+      return { data };
     } catch (error) {
-      return { message: "error", data: error.message };
+      return { data:error.message };
     }
   },
-  get: async (id)=>{
-    try{
-        const data= await hierarchyModel.findById(id);
-        return { message: "success", data:data };
-    }
-    catch(error){
-     return { message: "error", data: error.message };   
+
+
+  get: async (id) => {
+    try {
+      const data = await hierarchyModel.findById(id);
+      return { data };
+    } catch (error) {
+      return {data: error.message};
     }
   },
-  
- 
+
   add: async (body) => {
     try {
-      const savedData = await hierarchyModel.create(body);
-      if (savedData) {
-        return { message: "success", data: savedData };
-      }
+      const data = await hierarchyModel.create(body);
+      return {data};
     } catch (error) {
-      return { message: "error", data: error.message };
+      return { data: error.message };
+    }
+  },
+
+  update: async (id, body) => {
+    try {
+      const data = await hierarchyModel.findByIdAndUpdate(id, body);
+      return {data};
+    } catch (error) {
+      return { data: error.message };
+    }
+  },
+
+  delete: async (id) => {
+    try {
+      const data = await hierarchyModel.findByIdAndDelete(id, {
+        new: true,
+      });
+      return {data};
+    } catch (error) {
+      return { data: error.message };
     }
   },
 };

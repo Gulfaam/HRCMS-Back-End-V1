@@ -12,12 +12,15 @@ import permissionRoute from "./permission/index.js";
 
 import employeeRoute from "./employee/index.js";
 
+import leaveRequest from "./leaveRequest/index.js";
+
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 
 // Protected Routes
 
 // Un-Protected Routes
+unProtectedRouter.use("/leaveRequest", leaveRequest);
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
 unProtectedRouter.use("/attendence", attendenceRoute);
@@ -27,5 +30,6 @@ unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/role", roleRoute);
 unProtectedRouter.use("/job", jobRoute);
 unProtectedRouter.use("/permission", permissionRoute);
+
 
 export { protectedRouter, unProtectedRouter };

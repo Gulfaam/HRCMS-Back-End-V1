@@ -9,6 +9,7 @@ import hierarchyRoute from "./Hierarchy/index.js";
 import roleRoute from "./role/index.js"
 import jobRoute from "./job/index.js";
 import permissionRoute from "./permission/index.js";
+import leavetableRoute from "./leavetable/index.js";
 
 import employeeRoute from "./employee/index.js";
 
@@ -27,5 +28,6 @@ unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/role", roleRoute);
 unProtectedRouter.use("/job", jobRoute);
 unProtectedRouter.use("/permission", permissionRoute);
+unProtectedRouter.use("/leave", leavetableRoute);
 
 export { protectedRouter, unProtectedRouter };

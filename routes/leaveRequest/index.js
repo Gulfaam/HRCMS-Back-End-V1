@@ -1,5 +1,5 @@
 import express from "express";
-import authValidation from "../../validations/leaveRequest.js";
+import authValidation from "../../validations/leaverequest.js";
 import validate from "../../middlewares/validate.js";
 import controllers from "./controllers.js";
 import authenticate from "../../middlewares/authenticate.js";

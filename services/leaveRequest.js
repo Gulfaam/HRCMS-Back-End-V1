@@ -21,7 +21,6 @@ const hierarchy = {
 
   add: async (body, path) => {
     try {
-      console.log('the path is here',path);
       //*making sure that user on different os can also have the same path(mac,linux)
       path = path.replace(`\\`, `/`);
       const file = {
@@ -43,8 +42,6 @@ const hierarchy = {
   update: async (id, body, path) => {
     try {
       const existReq = await leaveRequest.findById(id);
-      console.log(existReq);
-      console.log(path);
       path = path.replace(`\\`, `/`);
       const file = {
         leave_type: body.leave_type || existReq.leave_type,

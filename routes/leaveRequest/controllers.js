@@ -6,7 +6,6 @@ import httpResponse from "../../utils/httpResponse.js";
 const controller = {
   add: async (req, res) => {
     try{
-      console.log(req.path.file);
       const addResponse = await leaveRequest.add(req.body,req.file.path);
       if(addResponse.savedData===null || ''){
       return httpResponse.CONFLICT(res,addResponse.data);
@@ -21,9 +20,9 @@ const controller = {
 },
   
 
-  get: async (req, res) => {
+  getOneById: async (req, res) => {
     try{
-    const addResponse = await leaveRequest.get(req.params.id);
+    const addResponse = await leaveRequest.getOnebyId(req.params.id);
     if(addResponse.data===null){
       return httpResponse.NOT_FOUND(res,addResponse.data);
     }
@@ -44,11 +43,10 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error.data);
     }
   },
-  update:async (req,res) => {
+  updateOneById:async (req,res) => {
     try{
       const path=req.file.path;
-      console.log('hello in the upadte section');
-      const data =await leaveRequest.update(req.params.id,req.body,path,{new: true});
+      const data =await leaveRequest.updateOneById(req.params.id,req.body,path,{new: true});
       if(data.data===null){
       return httpResponse.NOT_FOUND(res,data.data)
       }
@@ -61,9 +59,9 @@ const controller = {
     }
   },
 
-  delete:async (req,res) => {
+  deleteOneById:async (req,res) => {
     try{
-      const data =await leaveRequest.delete(req.params.id);
+      const data =await leaveRequest.deleteOneById(req.params.id);
       if(data.data===null){
       httpResponse.NOT_FOUND(res,data.data);
       }

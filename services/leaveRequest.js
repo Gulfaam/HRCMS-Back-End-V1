@@ -1,6 +1,6 @@
 import leaveRequest from "../models/leaveRequest.js";
 
-const hierarchy = {
+const leaveRequests = {
   getAll: async () => {
     try {
       const data = await leaveRequest.find();
@@ -10,7 +10,7 @@ const hierarchy = {
     }
   },
 
-  get: async (id) => {
+  getOnebyId: async (id) => {
     try {
       const data = await leaveRequest.findById(id);
       return { data };
@@ -39,7 +39,7 @@ const hierarchy = {
     }
   },
 
-  update: async (id, body, path) => {
+  updateOneById: async (id, body, path) => {
     try {
       const existReq = await leaveRequest.findById(id);
       path = path.replace(`\\`, `/`);
@@ -59,7 +59,7 @@ const hierarchy = {
     }
   },
 
-  delete: async (id) => {
+  deleteOneById: async (id) => {
     try {
       const data = await leaveRequest.findByIdAndDelete(id, {
         new: true,
@@ -71,4 +71,4 @@ const hierarchy = {
   },
 };
 
-export default hierarchy;
+export default leaveRequests;

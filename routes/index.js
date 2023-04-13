@@ -13,7 +13,6 @@ import permissionRoute from "./permission/index.js";
 import employeeRoute from "./employee/index.js";
 
 import leaveRequest from "./leaveRequest/index.js";
-
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 

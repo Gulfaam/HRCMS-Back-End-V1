@@ -8,10 +8,9 @@ import upload from "../../middlewares/multer.js";
 const router = express.Router();
 router.get("/", authenticate,controllers.getAll);
 router.post("/", authenticate,upload.single("attachment"),validate(authValidation.add),controllers.add);
-router.get('/:id', authenticate,validate(authValidation.id),controllers.get);
-console.log('yes');
-router.patch('/:id',authenticate,upload.single("attachment"),validate(authValidation.update),controllers.update);
-router.delete('/:id',authenticate,validate(authValidation.id),controllers.delete);
+router.get('/:id', authenticate,validate(authValidation.id),controllers.getOneById);
+router.patch('/:id',authenticate,upload.single("attachment"),validate(authValidation.update),controllers.updateOneById);
+router.delete('/:id',authenticate,validate(authValidation.id),controllers.deleteOneById);
 
 
 

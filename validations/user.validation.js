@@ -8,11 +8,11 @@ export default {
         }),
     },
 
-    register: {
-        body: joi.object().keys({
+    body: {
+       users:joi.array().items(joi.object().keys({
             email: joi.string().required().email(),
             password: joi.string().required(),
-        }),
+        })),
     },
 
     forgetPassword: {

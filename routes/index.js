@@ -15,9 +15,8 @@ import employeeRoute from "./employee/index.js";
 
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
-
 // Protected Routes
-
+protectedRouter.use("/leave", leavetableRoute);
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
@@ -28,6 +27,6 @@ unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/role", roleRoute);
 unProtectedRouter.use("/job", jobRoute);
 unProtectedRouter.use("/permission", permissionRoute);
-unProtectedRouter.use("/leave", leavetableRoute);
+
 
 export { protectedRouter, unProtectedRouter };

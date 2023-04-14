@@ -3,7 +3,7 @@ import httpResponse from "../../utils/httpResponse.js";
 const controller = {
 
   register: async (req, res) => {
-    const addResponse = await UserService.register(req.body);
+    const addResponse = await UserService.register(req.body.users);
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse.data);
     } else if (addResponse.message === "failed") {

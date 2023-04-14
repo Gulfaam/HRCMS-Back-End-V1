@@ -23,9 +23,11 @@ const UserService = {
 
   register: async (body) => {
     try {
-      const savedData = await Promise.all(body.users.map( async(user)=>{
-      return await UserModel.create(user);
-      }))
+
+      //*can aslo use the insertMany methods(mongoose)
+      const savedData = await Promise.all(body.map( async(user)=>{
+       return await UserModel.create(user);
+        }))
       if (savedData) {
         transporterFun(body.email)
       }

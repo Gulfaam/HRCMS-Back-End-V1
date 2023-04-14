@@ -12,6 +12,17 @@ const PerformanceService = {
     }
   },
 
+  addMultiple: async (body) => {
+    try {
+      const savedData = await PerformanceModel.insertMany(body);
+      if (savedData) {
+        return { message: "success", data: savedData };
+      }
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+
   getAll: async (limit, skip, query) => {
     try {
       const sort = {};
@@ -39,7 +50,7 @@ const PerformanceService = {
     }
   },
 
-  getById: async (id) => {
+  getOneById: async (id) => {
     try {
       const data = await PerformanceModel.findById(id);
       return { message: "success", data };
@@ -48,7 +59,7 @@ const PerformanceService = {
     }
   },
 
-  update: async (id, body) => {
+  updateOneById: async (id, body) => {
     try {
       const savedData = await PerformanceModel.findByIdAndUpdate(id, body);
       if (savedData) {
@@ -59,7 +70,7 @@ const PerformanceService = {
     }
   },
 
-  delete: async (id) => {
+  deleteOneById: async (id) => {
     try {
       const savedData = await PerformanceModel.findByIdAndDelete(id);
       if (savedData) {

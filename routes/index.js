@@ -16,17 +16,18 @@ const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 
 // Protected Routes
+protectedRouter.use("/performance", performanceRoute);
+protectedRouter.use("/misc", miscRoute);
+protectedRouter.use("/user", userRoute);
+
 
 // Un-Protected Routes
-unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
 unProtectedRouter.use("/attendence", attendenceRoute);
-unProtectedRouter.use("/misc", miscRoute);
 unProtectedRouter.use("/event", eventRoute);
 unProtectedRouter.use("/hierarchy", hierarchyRoute);
 unProtectedRouter.use("/role", roleRoute);
 unProtectedRouter.use("/job", jobRoute);
 unProtectedRouter.use("/permission", permissionRoute);
-unProtectedRouter.use("/performance", performanceRoute);
 
 export { protectedRouter, unProtectedRouter };

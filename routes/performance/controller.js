@@ -12,9 +12,10 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
   },
-
   addMultiple: async (req, res) => {
-    const addResponse = await PerformanceService.addMultiple(req.body);
+    const addResponse = await PerformanceService.addMultiple(
+      req.body.bulk_performance
+    );
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse.data);
     } else if (addResponse.message === "failed") {
@@ -23,34 +24,31 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
   },
-
   getAll: async (req, res) => {
     try {
       const limit = parseInt(req.query.limit) || 5;
       const skip = parseInt(req.query.skip) || 0;
-      const data = await PerformanceService.getAll(limit, skip, req.query);
-      return httpResponse.SUCCESS(res, data.data);
+      const addResponse = await PerformanceService.getAll(limit, skip, req.query);
+      return httpResponse.SUCCESS(res, addResponse.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-
-  getById: async (req, res) => {
+  getOneById: async (req, res) => {
     try {
-      const data = await PerformanceService.getById(req.params.id);
+      const addResponse = await PerformanceService.getOneById(req.params.id);
       if (data.message === "success") {
-        return httpResponse.SUCCESS(res, data.data);
+        return httpResponse.SUCCESS(res, addResponse.data);
       } else {
-        return httpResponse.NOT_FOUND(res, data.data);
+        return httpResponse.NOT_FOUND(res, addResponse.data);
       }
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-
-  update: async (req, res) => {
+  updateOneById: async (req, res) => {
     try {
-      const addResponse = await PerformanceService.update(
+      const addResponse = await PerformanceService.updateOneById(
         req.params.id,
         req.body,
         {
@@ -60,16 +58,20 @@ const controller = {
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse.data);
       } else {
-        return httpResponse.NOT_FOUND(res, addResponse.data);
+        return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
       }
     } catch (error) {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+      return httpResponse.NOT_FOUND(res, error);
     }
   },
-  delete: async (req, res) => {
+  deleteOneById: async (req, res) => {
     try {
-      const addResponse = await PerformanceService.delete(req.params.id);
-      return httpResponse.SUCCESS(res, addResponse.data);
+      const addResponse = await PerformanceService.deleteOneById(req.params.id);
+      if (addResponse.message === "success") {
+        return httpResponse.SUCCESS(res, addResponse.data);
+      } else {
+        return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
+      }
     } catch (error) {
       return httpResponse.NOT_FOUND(res, error);
     }

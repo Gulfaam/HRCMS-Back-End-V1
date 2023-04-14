@@ -1,6 +1,4 @@
 import express from "express";
-
-// routes
 import userRoute from "./user/index.js";
 import attendenceRoute from "./attendence/index.js";
 import miscRoute from "./misc/index.js";
@@ -9,12 +7,10 @@ import hierarchyRoute from "./Hierarchy/index.js";
 import roleRoute from "./role/index.js"
 import jobRoute from "./job/index.js";
 import permissionRoute from "./permission/index.js";
-
 import employeeRoute from "./employee/index.js";
 
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
-
 // Protected Routes
 
 // Un-Protected Routes

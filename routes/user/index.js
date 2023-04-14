@@ -9,7 +9,7 @@ router.get("/", controllers.getAll);
 router.post("/register", validate(authValidation.register), controllers.register);
 router.post("/forgetpassword", validate(authValidation.forgetPassword), controllers.forgetpassword);
 router.post("/login", validate(authValidation.login), controllers.login);
-router.patch('/:id', authenticate, validate(authValidation.update), controllers.update);
-router.delete('/:id', authenticate, validate(authValidation.id), controllers.delete);
+router.patch('/:id', authenticate, validate(authValidation.update), controllers.updateOneById);
+router.delete('/:id', authenticate, validate(authValidation.id), controllers.deleteOneById);
 
 export default router;

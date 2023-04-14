@@ -11,27 +11,41 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
-    getAll: async (limit, skip) => {
+    getAll: async (limit, skip, query) => {
         try {
-            const data = await Payroll.find().limit(limit).skip(skip);
-
+            const sort = {};
+            if (query.sort) {
+                if (typeof query.sort === "object") {
+                    query.sort.forEach((element) => {
+                        if (element.startsWith("-")) {
+                            sort[element.substring(1)] = -1;
+                        } else {
+                            sort[element] = 1;
+                        }
+                    });
+                } else {
+                    if (query.sort.startsWith("-")) {
+                        sort[query.sort.substring(1)] = -1;
+                    } else {
+                        sort[query.sort] = 1;
+                    }
+                }
+            }
+            const data = await Payroll.find(query).limit(limit).skip(skip).sort(sort);
             return { message: "success", data };
         } catch (error) {
             return { message: "error", data: error.message };
         }
     },
-    getOne: async (id) => {
+    getOneById: async (id) => {
         try {
             const data = await Payroll.findById(id);
-
             return { message: "success", data };
         } catch (error) {
             return { message: "error", data: error.message };
         }
     },
-
-
-    delete: async (id) => {
+    deleteOneById: async (id) => {
         try {
             const savedData = await Payroll.findByIdAndDelete(id);
             if (savedData) {
@@ -41,7 +55,7 @@ const PayrollService = {
             return { message: "error", data: error.message };
         }
     },
-    update: async (id, body) => {
+    updateOneById: async (id, body) => {
         try {
             const savedData = await Payroll.findByIdAndUpdate(id, body);
             if (savedData) {
@@ -49,13 +63,11 @@ const PayrollService = {
             }
             else {
                 return { message: "Not Found", data: savedData };
-
             }
         } catch (error) {
             return { message: "error", data: error.message };
         }
     },
-
 };
 
 export default PayrollService;

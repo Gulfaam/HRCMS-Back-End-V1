@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 export default {
-
     id: {
         params: Joi.object().keys({
             id: Joi.string().required(),
@@ -18,7 +17,6 @@ export default {
             issuer_id: Joi.string().required(),
         }),
     },
-
     update: {
         params: Joi.object().keys({
             id: Joi.string().required(),
@@ -33,5 +31,4 @@ export default {
             issuer_id: Joi.string(),
         }),
     },
-
 }

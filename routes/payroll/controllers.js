@@ -16,31 +16,31 @@ const controller = {
         try {
             const limit = parseInt(req.query.limit) || 10;
             const skip = parseInt(req.query.skip) || 0;
-            const data = await PayrollService.getAll(limit, skip);
+            const data = await PayrollService.getAll(limit, skip, req.query);
             return httpResponse.SUCCESS(res, data.data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
-    getOne: async (req, res) => {
+    getOneById: async (req, res) => {
         try {
-            const data = await PayrollService.getOne(req.params.id);
+            const data = await PayrollService.getOneById(req.params.id);
             return httpResponse.SUCCESS(res, data.data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
         }
     },
-    delete: async (req, res) => {
+    deleteOneById: async (req, res) => {
         try {
-            const addResponse = await PayrollService.delete(req.params.id);
+            const addResponse = await PayrollService.deleteOneById(req.params.id);
             return httpResponse.SUCCESS(res, addResponse.data);
         } catch (error) {
             return httpResponse.NOT_FOUND(res, error);
         }
     },
-    update: async (req, res) => {
+    updateOneById: async (req, res) => {
         try {
-            const addResponse = await PayrollService.update(req.params.id, req.body, { new: true });
+            const addResponse = await PayrollService.updateOneById(req.params.id, req.body, { new: true });
             if (addResponse.message === "success") {
                 return httpResponse.SUCCESS(res, addResponse.data);
 

@@ -8,12 +8,12 @@ export default {
         }),
     },
 
-    body: {
-       users:joi.array().items(joi.object().keys({
-            email: joi.string().required().email(),
-            password: joi.string().required(),
-        })),
-    },
+    register: joi.object({
+        users: joi.array().items(joi.object({
+          email: joi.string().email().required(),
+          password: joi.number().max(6).required()
+        }))
+      }),
 
     forgetPassword: {
         body: joi.object().keys({

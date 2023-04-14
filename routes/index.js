@@ -17,9 +17,8 @@ const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 
 // Protected Routes
-
+protectedRouter.use("/leaveRequest", leaveRequest);
 // Un-Protected Routes
-unProtectedRouter.use("/leaveRequest", leaveRequest);
 unProtectedRouter.use("/user", userRoute);
 unProtectedRouter.use("/employee", employeeRoute);
 unProtectedRouter.use("/attendence", attendenceRoute);

@@ -19,7 +19,6 @@ const controller = {
   }
 },
   
-
   getOneById: async (req, res) => {
     try{
     const addResponse = await leaveRequest.getOnebyId(req.params.id);
@@ -43,6 +42,7 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error.data);
     }
   },
+  
   updateOneById:async (req,res) => {
     try{
       const path=req.file.path;

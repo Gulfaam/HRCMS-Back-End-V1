@@ -21,7 +21,6 @@ const leaveRequests = {
 
   add: async (body, path) => {
     try {
-      //*making sure that user on different os can also have the same path(mac,linux)
       path = path.replace(`\\`, `/`);
       const file = {
         leave_type: body.leave_type,
@@ -51,7 +50,6 @@ const leaveRequests = {
         attachment:path || existReq.path,
         reason: body.reason || existReq.reason,
       };
-
       const data = await leaveRequest.findByIdAndUpdate(id, file);
       return { data };
     } catch (error) {

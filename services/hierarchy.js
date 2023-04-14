@@ -11,8 +11,7 @@ const hierarchy = {
     }
   },
 
-
-  get: async (id) => {
+  getOneById: async (id) => {
     try {
       const data = await hierarchyModel.findById(id);
       return { data };
@@ -30,7 +29,7 @@ const hierarchy = {
     }
   },
 
-  update: async (id, body) => {
+  updateOneById: async (id, body) => {
     try {
       const data = await hierarchyModel.findByIdAndUpdate(id, body);
       return {data};
@@ -39,7 +38,7 @@ const hierarchy = {
     }
   },
 
-  delete: async (id) => {
+  deleteOneById: async (id) => {
     try {
       const data = await hierarchyModel.findByIdAndDelete(id, {
         new: true,

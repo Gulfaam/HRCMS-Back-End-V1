@@ -17,10 +17,9 @@ const controller = {
   }
 },
   
-
-  get: async (req, res) => {
+  getOneById: async (req, res) => {
     try{
-    const addResponse = await hierarchy.get(req.params.id);
+    const addResponse = await hierarchy.getOneById(req.params.id);
     if(addResponse.data===null){
       return httpResponse.NOT_FOUND(res,addResponse.data);
     }
@@ -42,9 +41,9 @@ const controller = {
     }
   },
 
-  update:async (req,res) => {
+  updateOneById:async (req,res) => {
     try{
-      const data =await hierarchy.update(req.params.id, req.body, {new: true});
+      const data =await hierarchy.updateOneById(req.params.id, req.body, {new: true});
       if(data.data===null){
       return httpResponse.NOT_FOUND(res,data.data)
       }
@@ -57,9 +56,9 @@ const controller = {
     }
   },
 
-  delete:async (req,res) => {
+  deleteOneById:async (req,res) => {
     try{
-      const data =await hierarchy.delete(req.params.id);
+      const data =await hierarchy.deleteOneById(req.params.id);
       if(data.data===null){
       httpResponse.NOT_FOUND(res,data.data);
       }

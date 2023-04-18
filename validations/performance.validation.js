@@ -17,7 +17,6 @@ export default {
       updated_by_id: Joi.string().required().max(24),
     }),
   },
-
   addMultiple: {
     bulk_performance: Joi.object().keys({
       parameter: Joi.string().required().max(50),
@@ -29,7 +28,6 @@ export default {
       updated_by_id: Joi.string().required().max(24),
     }),
   },
-
   update: {
     params: Joi.object().keys({
       id: Joi.string().required(),

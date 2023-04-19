@@ -13,10 +13,12 @@ import permissionRoute from "./permission/index.js";
 import employeeRoute from "./employee/index.js";
 import performanceRoute from "./performance/index.js"
 
+import leaveRequest from "./leaveRequest/index.js";
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 
 // Protected Routes
+protectedRouter.use("/leaveRequest", leaveRequest);
 protectedRouter.use("/user", userRoute);
 protectedRouter.use("/employee", employeeRoute);
 protectedRouter.use("/attendence", attendenceRoute);
@@ -30,6 +32,7 @@ protectedRouter.use("/performance", performanceRoute);
 
 // Un-Protected Routes
 unProtectedRouter.use("/auth", authRoute);
+
 
 
 export { protectedRouter, unProtectedRouter };

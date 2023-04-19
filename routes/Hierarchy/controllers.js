@@ -5,7 +5,7 @@ const controller = {
   add: async (req, res) => {
     try{
       const addResponse = await hierarchy.add(req.body);
-      if(addResponse.data===null || ''){
+      if(!addResponse.data){
       return httpResponse.CONFLICT(res,addResponse.data);
       }
       else{
@@ -20,7 +20,7 @@ const controller = {
   getOneById: async (req, res) => {
     try{
     const addResponse = await hierarchy.getOneById(req.params.id);
-    if(addResponse.data===null){
+    if(!addResponse.data){
       return httpResponse.NOT_FOUND(res,addResponse.data);
     }
     else {
@@ -43,8 +43,8 @@ const controller = {
 
   updateOneById:async (req,res) => {
     try{
-      const data =await hierarchy.updateOneById(req.params.id, req.body, {new: true});
-      if(data.data===null){
+      const data =await hierarchy.updateOneById(req.params.id, req.body);
+      if(!data.data){
       return httpResponse.NOT_FOUND(res,data.data)
       }
       else{
@@ -59,7 +59,7 @@ const controller = {
   deleteOneById:async (req,res) => {
     try{
       const data =await hierarchy.deleteOneById(req.params.id);
-      if(data.data===null){
+      if(!data.data){
       httpResponse.NOT_FOUND(res,data.data);
       }
      else{

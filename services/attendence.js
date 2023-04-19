@@ -1,3 +1,4 @@
+
 import AttendenceModel from "../models/attendence.js";
 
 const AttendenceService = {
@@ -9,6 +10,24 @@ const AttendenceService = {
       return { message: "error", data: error.message };
     }
   },
+
+  getByPagination: async (limit,skip) => {
+    try {
+        const data = await AttendenceModel.find().limit(limit).skip(skip);
+        return { message: "success", data };
+    } catch (error) {
+        return { message: "error", data: error.message };
+    }
+},
+
+getByOrder: async (obj) => {
+  try {
+      const data = await AttendenceModel.find().sort(obj);
+      return { message: "success", data };
+  } catch (error) {
+      return { message: "error", data: error.message };
+  }
+},
 
   add: async (body) => {
     try {

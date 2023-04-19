@@ -12,6 +12,9 @@ import jobRoute from "./job/index.js";
 import permissionRoute from "./permission/index.js";
 import employeeRoute from "./employee/index.js";
 import performanceRoute from "./performance/index.js"
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();

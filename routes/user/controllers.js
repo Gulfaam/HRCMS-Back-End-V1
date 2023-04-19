@@ -1,7 +1,7 @@
 import UserService from "../../services/user.js";
 import httpResponse from "../../utils/httpResponse.js";
-const controller = {
 
+const controller = {
   register: async (req, res) => {
     const addResponse = await UserService.register(req.body);
     if (addResponse.message === "success") {
@@ -12,7 +12,6 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
   },
-
   forgetpassword: async (req, res) => {
     try {
       const addResponse = await UserService.forgetpassword(req.body);
@@ -26,7 +25,6 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-
   login: async (req, res) => {
     try {
       const addResponse = await UserService.login(req.body);
@@ -40,27 +38,27 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-
   getAll: async (req, res) => {
     try {
-      const data = await UserService.getAll();
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = parseInt(req.query.skip) || 0;
+      const data = await UserService.getAll(limit, skip, req.query);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
-
-  update: async (req, res) => {
+  updateOneById: async (req, res) => {
     try {
-      const addResponse = await UserService.update(req.params.id, req.body, { new: true });
+      const addResponse = await UserService.updateOneById(req.params.id, req.body, { new: true });
       return httpResponse.SUCCESS(res, addResponse.data);
     } catch (error) {
       return httpResponse.NOT_FOUND(res, error);
     }
   },
-  delete: async (req, res) => {
+  deleteOneById: async (req, res) => {
     try {
-      const addResponse = await UserService.delete(req.params.id);
+      const addResponse = await UserService.deleteOneById(req.params.id);
       return httpResponse.SUCCESS(res, addResponse.data);
     } catch (error) {
       return httpResponse.NOT_FOUND(res, error);

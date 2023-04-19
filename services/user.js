@@ -51,7 +51,8 @@ const UserService = {
   },
   getAll: async (limit, skip, query) => {
     try {
-      const sort = {};if (query.sort) {
+      const sort = {};
+      if (query.sort) {
         const sortBy = typeof query.sort === "string" ? [query.sort] : query.sort;
         sortBy.forEach(s => {
           const sortOrder = s.startsWith('-') ? -1 : 1;

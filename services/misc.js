@@ -20,6 +20,16 @@ const MiscService = {
       return { message: "error", data: error.message };
     }
   },
+
+  getById: async (id) => {
+    try {
+      const data = await MiscModel.findById(id);
+      return { message: "success", data };
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+
   update: async (id,body) => {
     try {
       const savedData = await MiscModel.findByIdAndUpdate(id, body);
@@ -30,6 +40,7 @@ const MiscService = {
       return { message: "error", data: error.message };
     }
   },
+
   delete: async (id) => {
     try {
       const savedData = await MiscModel.findByIdAndDelete(id);

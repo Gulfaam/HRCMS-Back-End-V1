@@ -21,6 +21,16 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, addResponse.data);
     }
   },
+
+  getById: async (req, res) => {
+    try {
+      const data = await MiscService.getById(req.params.id);
+      return httpResponse.SUCCESS(res, data.data);
+    } catch (error) {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
+
   update: async (req, res) => {
     try {
       const addResponse = await MiscService.update(req.params.id, req.body, {
@@ -31,6 +41,7 @@ const controller = {
       return httpResponse.NOT_FOUND(res, error);
     }
   },
+
   delete: async (req, res) => {
     try {
       const addResponse = await MiscService.delete(req.params.id);

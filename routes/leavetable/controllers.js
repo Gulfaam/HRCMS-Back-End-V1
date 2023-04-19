@@ -15,27 +15,77 @@ const controller = {
     }
   },
 
-  get: async (req, res) => {
+  getOneById: async (req, res) => {
+    try{
+    const addResponse = await leavetable.get(req.params.id);
+    if(addResponse.data===null){
+      return httpResponse.NOT_FOUND(res,addResponse.data);
+    }
+    else {
+      return httpResponse.SUCCESS(res,addResponse.data);
+    }
+    }
+    catch (error){
+        return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
+    }
+  },
+
+  getByfiltration: async (req, res) => {
     try {
-      if (req.query.id) {
-        const id = req.query.id;
-        var addResponse = await leavetable.get(id);
-      }
+      const forFilter = {};
       if (req.query.type) {
         const type = {
           type: req.query.type,
         };
-        var addResponse = await leavetable.getbyType(type);
+        if (req.query.pending || req.query.available || req.query.availed) {
+          forFilter.type = req.query.type;
+        } else {
+          var addResponse = await leavetable.getbyType(type);
+          result();
+        }
       }
+
+      if (req.query.availed) {
+        if (typeof req.query.availed === "object") {
+          if (req.query.availed.lt)
+            forFilter.availed = { $lt: req.query.availed.lt };
+        }
+        if (req.query.availed.gt) {
+          forFilter.availed = { $gt: req.query.availed.gt };
+        }
+      }
+
       if (req.query.pending) {
-        const pending=req.query.pending; 
-        var addResponse = await leavetable.getbyPending(pending);
-      } 
-      if (addResponse.data === null) {
-        return httpResponse.NOT_FOUND(res, addResponse.data);
+        if (typeof req.query.pending === "object") {
+          if (req.query.pending.lt)
+            forFilter.pending = { $lt: req.query.pending.lt };
+        }
+        if (req.query.pending.gt) {
+          forFilter.pending = { $gt: req.query.pending.gt };
+        }
       }
-     else {
-        return httpResponse.SUCCESS(res, addResponse.data);
+
+      if (req.query.available) {
+        if (typeof req.query.available === "object") {
+          if (req.query.available.lt) {
+            forFilter.available = { $lt: req.query.available.lt };
+          }
+          if (req.query.available.gt) {
+            forFilter.available = { $gt: req.query.available.gt };
+          }
+        }
+      }
+
+      if (forFilter) {
+        addResponse = await leavetable.getbyfiltration(forFilter);
+        result();
+      }
+      function result() {
+        if (addResponse.data === null) {
+          return httpResponse.NOT_FOUND(res, addResponse.data);
+        } else {
+          return httpResponse.SUCCESS(res, addResponse.data);
+        }
       }
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error.data);

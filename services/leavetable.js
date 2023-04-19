@@ -26,16 +26,10 @@ const leavetable = {
       return {data: error.message};
     }
   },
-  getbyPending: async (pending) => {
+
+    getbyfiltration: async (pending) => {
     try { 
-     //*getting employee's only leave's less then 30   
-     const data = await leavetabel.aggregate([
-            {
-                $match: {
-                    pending: { $lt: pending},
-                },
-            },
-        ]);
+     const data = await leavetabel.find(pending);
       return { data };
     } catch (error) {
       return {data: error.message};

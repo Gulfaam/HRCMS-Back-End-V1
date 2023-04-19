@@ -1,11 +1,13 @@
-import hierarchy from "../../services/hierarchy.js";
+
+
+import leaveRequest from "../../services/leaveRequest.js";
 import httpResponse from "../../utils/httpResponse.js";
 
 const controller = {
   add: async (req, res) => {
     try{
-      const addResponse = await hierarchy.add(req.body);
-      if(!addResponse.data){
+      const addResponse = await leaveRequest.add(req.body,req.file.path);
+      if(addResponse.savedData===null || ''){
       return httpResponse.CONFLICT(res,addResponse.data);
       }
       else{
@@ -19,8 +21,8 @@ const controller = {
   
   getOneById: async (req, res) => {
     try{
-    const addResponse = await hierarchy.getOneById(req.params.id);
-    if(!addResponse.data){
+    const addResponse = await leaveRequest.getOnebyId(req.params.id);
+    if(addResponse.data===null){
       return httpResponse.NOT_FOUND(res,addResponse.data);
     }
     else {
@@ -31,20 +33,21 @@ const controller = {
         return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
     }
   },
-  
+
   getAll: async (req, res) => {
     try {
-      const data = await hierarchy.getAll();
+      const data = await leaveRequest.getAll();
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
-      return httpResponse.INTERNAL_SERVER_ERROR(res,error.data);
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error.data);
     }
   },
-
+  
   updateOneById:async (req,res) => {
     try{
-      const data =await hierarchy.updateOneById(req.params.id, req.body, {new: true});
-      if(!data.data){
+      const path=req.file.path;
+      const data =await leaveRequest.updateOneById(req.params.id,req.body,path,{new: true});
+      if(data.data===null){
       return httpResponse.NOT_FOUND(res,data.data)
       }
       else{
@@ -58,8 +61,8 @@ const controller = {
 
   deleteOneById:async (req,res) => {
     try{
-      const data =await hierarchy.deleteOneById(req.params.id);
-      if(!data.data){
+      const data =await leaveRequest.deleteOneById(req.params.id);
+      if(data.data===null){
       httpResponse.NOT_FOUND(res,data.data);
       }
      else{
@@ -71,6 +74,5 @@ const controller = {
     }
   }
 }
-
 
 export default controller;

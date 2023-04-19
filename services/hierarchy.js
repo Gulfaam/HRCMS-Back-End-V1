@@ -31,7 +31,7 @@ const hierarchy = {
 
   updateOneById: async (id, body) => {
     try {
-      const data = await hierarchyModel.findByIdAndUpdate(id, body);
+      const data = await hierarchyModel.findByIdAndUpdate(id, body,{new:true});
       return {data};
     } catch (error) {
       return { data: error.message };

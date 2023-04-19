@@ -23,7 +23,6 @@ const EmployeeServices = {
 
     add: async (body, path) => {
         try {
-            console.log(path)
             path = path.replace(`\\`, `/`);
             const file = {
                 name: body.name,

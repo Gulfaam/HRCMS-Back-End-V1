@@ -6,9 +6,9 @@ import authenticate from "../../middlewares/authenticate.js";
 import upload from "../../middlewares/multer.js";
 
 const router = express.Router();
-router.get("/", authenticate, controllers.getAll);
+router.get("/", controllers.getAll);
 router.get("/:id", authenticate, validate(employeeValidation.id), controllers.getOne);
-router.post("/", authenticate, upload.single("image"), validate(employeeValidation.add), controllers.add);
+router.post("/", upload.single("image"), validate(employeeValidation.add), controllers.add);
 router.delete("/:id", authenticate, validate(employeeValidation.id), controllers.delete);
 router.patch("/:id", authenticate, upload.single("image"), validate(employeeValidation.update), controllers.update);
 

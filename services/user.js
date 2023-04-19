@@ -54,9 +54,9 @@ const UserService = {
     }
   },
 
-  getAll: async () => {
+  getAll: async (limit, skip) => {
     try {
-      const data = await UserModel.find();
+      const data = await UserModel.find().limit(limit).skip(skip);
 
       return { message: "success", data };
     } catch (error) {

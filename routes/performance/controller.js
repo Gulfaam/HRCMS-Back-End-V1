@@ -37,7 +37,7 @@ const controller = {
   getOneById: async (req, res) => {
     try {
       const addResponse = await PerformanceService.getOneById(req.params.id);
-      if (data.message === "success") {
+      if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse.data);
       } else {
         return httpResponse.NOT_FOUND(res, addResponse.data);

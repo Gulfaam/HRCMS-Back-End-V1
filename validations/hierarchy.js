@@ -11,8 +11,8 @@ const validations ={
     body: Joi.object().keys({
         created_date: Joi.date().iso().required(),
         updated_date: Joi.date().iso().required(),
-        employee_id: Joi.string().required(),
-        team_lead_id:Joi.string().required(), 
+        employee_id: Joi.string().required().max(24),
+        team_lead_id:Joi.string().required().max(24), 
     }),
   },
 
@@ -24,8 +24,8 @@ const validations ={
     body: Joi.object().keys({
         created_date: Joi.date().iso().required(),
         updated_date: Joi.date().iso().required(),
-        employee_id: Joi.string().required(),
-        team_lead_id:Joi.string().required(), 
+        employee_id: Joi.string().required().max(24),
+        team_lead_id:Joi.string().required().max(24), 
     }),   
  } 
 }

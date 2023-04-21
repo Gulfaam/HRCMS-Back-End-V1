@@ -14,6 +14,11 @@ import employeeRoute from "./employee/index.js";
 import performanceRoute from "./performance/index.js"
 
 import leaveRequest from "./leaveRequest/index.js";
+import { createRequire } from 'module';
+
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
+
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
 

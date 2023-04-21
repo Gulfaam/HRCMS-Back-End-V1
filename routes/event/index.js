@@ -1,5 +1,5 @@
 import express from "express";
-import eventValidation from "../../validations/user.validation.js";
+import eventValidation from "../../validations/event.validation.js";
 import validate from "../../middlewares/validate.js";
 import controllers from "./controllers.js";
 import authenticate from "../../middlewares/authenticate.js";

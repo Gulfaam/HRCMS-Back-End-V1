@@ -1,20 +1,19 @@
 import joi from 'joi'
 
-
-export default {
+const authValidation= {
     id: {
         params: joi.object().keys({
             id: joi.string().required(),
         }),
     },
 
-    register: {
+    Register:{
         body: joi.object().keys({
             email: joi.string().required().email(),
-            password: joi.string().required(),
+            password: joi.string().required().max(12),
         }),
     },
-
+    
     forgetPassword: {
         body: joi.object().keys({
             email: joi.string().required().email()
@@ -37,3 +36,10 @@ export default {
         }),
     },
 }
+ const bulkUserschema = joi.object().keys({
+        email: joi.string().email().required(),
+        password: joi.string().required().max(12),
+    });
+
+
+export {authValidation,bulkUserschema};

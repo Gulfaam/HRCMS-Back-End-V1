@@ -23,7 +23,10 @@ const UserService = {
 
   register: async (body) => {
     try {
-      const savedData = await UserModel.create(body);
+      console.log(body);
+      const savedData = await Promise.all(body.map( async(user)=>{
+       return await UserModel.create(user);
+       }))
 
       if (savedData) {
         transporterFun(body.email)

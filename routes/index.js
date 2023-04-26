@@ -10,14 +10,16 @@ import hierarchyRoute from "./Hierarchy/index.js";
 import roleRoute from "./role/index.js"
 import jobRoute from "./job/index.js";
 import permissionRoute from "./permission/index.js";
+import leavetableRoute from "./leavetable/index.js";
+
 import employeeRoute from "./employee/index.js";
 import performanceRoute from "./performance/index.js"
 
 import leaveRequest from "./leaveRequest/index.js";
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
-
 // Protected Routes
+protectedRouter.use("/leave", leavetableRoute);
 protectedRouter.use("/leaveRequest", leaveRequest);
 protectedRouter.use("/user", userRoute);
 protectedRouter.use("/employee", employeeRoute);
